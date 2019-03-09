@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
+<?rfc toc="yes"?>
+<?rfc symrefs="yes"?>
+<?rfc sortrefs="yes" ?>
+<?rfc compact="yes"?>
+<?rfc subcompact="no"?>
+<?rfc linkmailto="no" ?>
+<?rfc editing="no" ?>
+<?rfc comments="yes" ?>
+<?rfc inline="yes"?>
+<?rfc rfcedstyle="yes"?>
+<?rfc-ext allow-markup-in-artwork="yes" ?>
+<?rfc-ext include-index="no" ?>
+<!--<?rfc strict="no"?> -->
+<rfc category="std" docName="draft-kwatsen-netconf-tcp-client-server-latest"
+     ipr="trust200902">
+  <front>
+    <title abbrev="Groupings for TCP Clients and Servers">YANG Groupings for
+    TCP Clients and TCP Servers</title>
+    <author fullname="Kent Watsen" initials="K." surname="Watsen">
+      <organization>Watsen Networks</organization>
+      <address>
+        <email>kent+ietf@watsen.net</email>
+      </address>
+    </author>
+    <date/>
+    <area>Operations</area>
+    <workgroup>NETCONF Working Group</workgroup>
+
+    <abstract>
+      <t>This document defines two YANG modules: the first defines a grouping
+        for configuring a generic TCP client, and the second defines a grouping
+        for configuring a generic TCP server. It is intended that these
+        groupings will be used by applications using the TCP protocol.</t>
+    </abstract>
+
+    <note title="Editorial Note (To be removed by RFC Editor)">
+      <t>This draft contains many placeholder values that need to be replaced
+      with finalized values at the time of publication. This note summarizes
+      all of the substitutions that are needed. No other RFC Editor
+      instructions are specified elsewhere in this document.</t>
+
+      <t>Artwork in this document contains placeholder values for the date of
+      publication of this draft. Please apply the following replacement: <list
+          style="symbols">
+          <t><spanx style="verb">YYYY-MM-DD</spanx> --&gt; the publication
+          date of this draft</t>
+        </list></t>
+
+      <t>The following Appendix section is to be removed prior to publication:
+      <list style="symbols">
+          <t>Appendix A. Change Log</t>
+        </list></t>
+    </note>
+  </front>
+
+  <middle>
+    <section title="Introduction">
+      <t>This document defines two YANG 1.1 <xref target="RFC7950"/> modules:
+        the first defines a grouping for configuring a generic TCP client, and
+        the second defines a grouping for configuring a generic TCP server. It
+        is intended that these groupings will be used by applications using
+        the TCP protocol.  For instance, these groupings could help define
+        the configuration module for an SSH, TLS, or HTTP based application.</t>
+    </section>
+
+    <section title="Terminology">
+      <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+      "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+      "OPTIONAL" in this document are to be interpreted as described in BCP 14
+      <xref target="RFC2119"/> <xref target="RFC8174"/> when, and only when,
+      they appear in all capitals, as shown here.</t>
+    </section>
+
+    <section anchor="tcp-client-model" title="The TCP Client Model">
+      <section title="Tree Diagram">
+        <t>This section provides a tree diagram <xref target="RFC8340"/> for
+        the "ietf-tcp-client" module.</t>
+
+        <t><figure>
+            <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ietf-tcp-client-tree.txt)
+]]></artwork>
+          </figure></t>
+      </section>
+
+      <section title="Example Usage">
+        <t>This section presents an example showing the tcp-client-grouping
+        populated with some data.</t>
+        <t>
+          <figure>
+            <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-tcp-client.xml)
+]]></artwork>
+          </figure></t>
+      </section>
+
+      <section anchor="tcp-client-yang-module" title="YANG Module">
+        <t>This YANG module has normative references to <xref target="RFC6991"/>.</t>
+        <t><figure>
+            <artwork><![CDATA[
+<CODE BEGINS> file "ietf-tcp-client@YYYY-MM-DD.yang"
+INSERT_TEXT_FROM_FILE(ietf-tcp-client@YYYY-MM-DD.yang,71)
+<CODE ENDS>
+]]></artwork>
+          </figure></t>
+      </section>
+    </section>
+
+    <section anchor="tcp-server-model" title="The TCP Server Model">
+      <section title="Tree Diagram">
+        <t>This section provides a tree diagram <xref target="RFC8340"/> for
+        the "ietf-tcp-server" module.</t>
+
+        <t><figure>
+            <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ietf-tcp-server-tree.txt)
+]]></artwork>
+          </figure></t>
+      </section>
+
+      <section title="Example Usage">
+        <t>This section presents an example showing the tcp-server-grouping
+        populated with some data.</t>
+        <t>
+          <figure>
+            <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-tcp-server.xml)
+]]></artwork>
+          </figure></t>
+      </section>
+
+      <section anchor="tcp-server-yang-module" title="YANG Module">
+        <t>This YANG module has normative references to <xref target="RFC6991"/>.</t>
+        <t><figure>
+            <artwork><![CDATA[
+<CODE BEGINS> file "ietf-tcp-server@YYYY-MM-DD.yang"
+INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
+<CODE ENDS>
+]]></artwork>
+          </figure></t>
+      </section>
+    </section>
+
+    <section title="Security Considerations">
+      <t>The YANG modules defined in this document are designed to be accessed
+      via YANG based management protocols, such as NETCONF <xref
+      target="RFC6241"/> and RESTCONF <xref target="RFC8040"/>. Both of these
+      protocols have mandatory-to-implement secure transport layers (e.g.,
+      SSH, TCP) with mutual authentication.</t>
+
+      <t>The NETCONF access control model (NACM) <xref target="RFC8341"/>
+      provides the means to restrict access for particular users to a
+      pre-configured subset of all available protocol operations and
+      content.</t>
+
+      <t>Since the modules defined in this document only define groupings,
+      these considerations are primarily for the designers of other modules
+      that use these groupings.</t>
+
+      <t>There are a number of data nodes defined in the YANG modules that are
+      writable/creatable/deletable (i.e., config true, which is the default).
+      These data nodes may be considered sensitive or vulnerable in some
+      network environments. Write operations (e.g., edit-config) to these data
+      nodes without proper protection can have a negative effect on network
+      operations. These are the subtrees and data nodes and their
+      sensitivity/vulnerability: <list hangIndent="6" style="hanging">
+          <t hangText="   NONE"/>
+        </list></t>
+
+      <t>Some of the readable data nodes in the YANG modules may be considered
+      sensitive or vulnerable in some network environments. It is thus
+      important to control read access (e.g., via get, get-config, or
+      notification) to these data nodes. These are the subtrees and data nodes
+      and their sensitivity/vulnerability: <list hangIndent="6" style="hanging">
+          <t hangText="   NONE"/>
+        </list></t>
+
+      <t>Some of the RPC operations in this YANG module may be considered
+      sensitive or vulnerable in some network environments. It is thus
+      important to control access to these operations. These are the
+      operations and their sensitivity/vulnerability: <list hangIndent="6"
+          style="hanging">
+          <t hangText="   NONE"/>
+        </list></t>
+    </section>
+
+    <section title="IANA Considerations">
+      <section title="The IETF XML Registry">
+        <t>This document registers two URIs in the "ns" subregistry of the
+        IETF XML Registry <xref target="RFC3688"/>. Following the format in
+        <xref target="RFC3688"/>, the following registrations are
+        requested:</t>
+        <t><figure>
+            <artwork>
+   URI: urn:ietf:params:xml:ns:yang:ietf-tcp-client
+   Registrant Contact: The NETCONF WG of the IETF.
+   XML: N/A, the requested URI is an XML namespace.
+
+   URI: urn:ietf:params:xml:ns:yang:ietf-tcp-server
+   Registrant Contact: The NETCONF WG of the IETF.
+   XML: N/A, the requested URI is an XML namespace.
+</artwork>
+          </figure></t>
+      </section>
+
+      <section title="The YANG Module Names Registry">
+        <t>This document registers two YANG modules in the YANG Module Names
+        registry <xref target="RFC6020"/>. Following the format in <xref
+        target="RFC6020"/>, the following registrations are requested:</t>
+        <t><figure>
+            <artwork>
+   name:         ietf-tcp-client
+   namespace:    urn:ietf:params:xml:ns:yang:ietf-tcp-client
+   prefix:       tcpc
+   reference:    RFC XXXX
+
+   name:         ietf-tcp-server
+   namespace:    urn:ietf:params:xml:ns:yang:ietf-tcp-server
+   prefix:       tcps
+   reference:    RFC XXXX
+</artwork>
+          </figure></t>
+      </section>
+    </section>
+  </middle>
+
+  <back>
+    <references title="Normative References">
+      <?rfc include="reference.RFC.2119.xml"?>
+      <?rfc include="reference.RFC.6020.xml"?>
+      <?rfc include="reference.RFC.6991.xml"?>
+      <?rfc include="reference.RFC.7950.xml"?>
+      <?rfc include="reference.RFC.8174.xml"?>
+      <?rfc include="reference.RFC.8341.xml"?>
+    </references>
+
+    <references title="Informative References">
+      <?rfc include="reference.RFC.3688.xml"?>
+      <?rfc include="reference.RFC.6241.xml"?>
+      <?rfc include="reference.RFC.8040.xml"?>
+      <?rfc include="reference.RFC.8340.xml"?>
+    </references>
+
+<!--
+    <section title="Change Log">
+      <section title="00 to 01">
+        <t><list style="symbols">
+          </list></t>
+      </section>
+
+    </section>
+
+    <section numbered="no" title="Acknowledgements">
+      <t>The authors would like to thank for following for lively discussions
+        on list and in the halls (ordered by last name):
+          TBD
+      </t>
+    </section>
+-->
+
+  </back>
+</rfc>
