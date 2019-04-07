@@ -1,9 +1,11 @@
 <tcp-server xmlns="urn:ietf:params:xml:ns:yang:ietf-tcp-server">
-  <local-address>10.20.30.40</local-address>
-  <local-port>7777</local-port>
-  <tcp-keepalives>
-    <idle-time>15</idle-time>
-    <max-probes>3</max-probes>
-    <probe-interval>30</probe-interval>
-  </tcp-keepalives>
+  <tcp-server-parameters>
+    <local-address>10.20.30.40</local-address>
+    <local-port>7777</local-port>
+    <keepalives>
+      <idle-time>15</idle-time>
+      <max-probes>3</max-probes>
+      <probe-interval>30</probe-interval>
+    </keepalives>
+  </tcp-server-parameters>
 </tcp-server>

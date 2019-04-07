@@ -1,11 +1,13 @@
 <tcp-client xmlns="urn:ietf:params:xml:ns:yang:ietf-tcp-client">
-  <remote-address>www.example.com</remote-address>
-  <remote-port>443</remote-port>
-  <local-address>0.0.0.0</local-address>
-  <local-port>0</local-port>
-  <tcp-keepalives>
-    <idle-time>15</idle-time>
-    <max-probes>3</max-probes>
-    <probe-interval>30</probe-interval>
-  </tcp-keepalives>
+  <tcp-client-parameters>
+    <remote-address>www.example.com</remote-address>
+    <remote-port>443</remote-port>
+    <local-address>0.0.0.0</local-address>
+    <local-port>0</local-port>
+    <keepalives>
+      <idle-time>15</idle-time>
+      <max-probes>3</max-probes>
+      <probe-interval>30</probe-interval>
+    </keepalives>
+  </tcp-client-parameters>
 </tcp-client>
