@@ -9,13 +9,24 @@ module ietf-tcp-server {
       "RFC 6991: Common YANG Data Types";
   }
 
+  import ietf-tcp-common {
+    prefix tcpcmn;
+    reference
+      "RFC XXXX: YANG Groupings for TCP Clients and TCP Servers";
+  }
+
   organization
-    "IETF NETCONF (Network Configuration) Working Group";
+    "IETF NETCONF (Network Configuration) Working Group and the
+     IETF TCP Maintenance and Minor Extensions (TCPM) Working Group";
 
   contact
     "WG Web:   <http://datatracker.ietf.org/wg/netconf/>
+               <http://datatracker.ietf.org/wg/tcpm/>
      WG List:  <mailto:netconf@ietf.org>
-     Author:   Kent Watsen <mailto:kent+ietf@watsen.net>";
+               <mailto:tcpm@ietf.org>
+     Authors:  Kent Watsen <mailto:kent+ietf@watsen.net>
+               Michael Scharf
+               <mailto:michael.scharf@hs-esslingen.de>";
 
   description
     "This module defines reusable groupings for TCP servers that
@@ -85,50 +96,14 @@ module ietf-tcp-server {
            application level data model may 'refine' it with
            an application specific default port number value.";
       }
-      container keepalives {
-        if-feature "tcp-server-keepalives";
-        presence "Indicates that keepalives are enabled.";
-        description
-          "Configures the keep-alive policy, to proactively test the
-           aliveness of the TCP client.  Not all servers will use
-           all the values, based on capabilities of the underlying
-           operating system.  An unresponsive TCP client is dropped
-           after approximately (idle-time * 60) + (max-probes *
-           probe-interval) seconds.";
-        leaf idle-time {
-          type uint16 {
-            range "1..max";
-          }
-          units "minutes";
-          mandatory true;
+      uses tcpcmn:tcp-connection-grouping {
+        augment "keepalives" {
+          if-feature "tcp-server-keepalives";
           description
-            "Sets the amount of time in minutes after which if no
-             data has been received from the TCP client, a TCP-level
-             probe message will be sent to test the aliveness of
-             the TCP client.";
+            "Add an if-feature statement so that implementations
+             can choose to support TCP server keepalives.";
         }
-        leaf max-probes {
-          type uint16 {
-            range "1..max";
-          }
-          description
-            "Sets the maximum number of sequential keep-alive
-             probes that can fail to obtain a response from the
-             TCP client before assuming the TCP client is no
-             longer alive.  If no value is specified, then the
-             operating system provided default value is used.";
-        }
-        leaf probe-interval {
-          type uint16 {
-            range "1..max";
-          }
-          units "seconds";
-          description
-            "Sets the time interval between failed probes.  If no
-             value is specified, then the operating system provided
-             default value is used.";
-        }
-      } // container keepalives
+      } 
     } // container tcp-server-parameters
-  }
+  } // grouping tcp-server-grouping
 }

@@ -24,15 +24,21 @@
         <email>kent+ietf@watsen.net</email>
       </address>
     </author>
+    <author fullname="Michael Scharf" initials="M." surname="Scharf">
+      <organization>Hochschule Esslingen - University of Applied Sciences</organization>
+      <address>
+        <email>michael.scharf@hs-esslingen.de</email>
+      </address>
+    </author>
     <date/>
     <area>Operations</area>
     <workgroup>NETCONF Working Group</workgroup>
 
     <abstract>
-      <t>This document defines two YANG modules: the first defines a grouping
-        for configuring a generic TCP client, and the second defines a grouping
-        for configuring a generic TCP server. It is intended that these
-        groupings will be used by applications using the TCP protocol.</t>
+      <t>This document defines three YANG modules: the first defines a grouping
+        for configuring a generic TCP client, the second defines a grouping
+        for configuring a generic TCP server, and the third defines a grouping
+        common to the TCP clients and TCP servers.</t>
     </abstract>
 
     <note title="Editorial Note (To be removed by RFC Editor)">
@@ -57,12 +63,15 @@
 
   <middle>
     <section title="Introduction">
-      <t>This document defines two YANG 1.1 <xref target="RFC7950"/> modules:
-        the first defines a grouping for configuring a generic TCP client, and
-        the second defines a grouping for configuring a generic TCP server. It
-        is intended that these groupings will be used by applications using
-        the TCP protocol.  For instance, these groupings could help define
-        the configuration module for an SSH, TLS, or HTTP based application.</t>
+      <t>This document defines three YANG 1.1 <xref target="RFC7950"/> modules:
+        the first defines a grouping for configuring a generic TCP client, 
+        the second defines a grouping for configuring a generic TCP server,
+        and the third defines a grouping common to the TCP clients and TCP
+        servers.</t>
+        <t>It is intended that these groupings will be used either standalone,
+        for TCP-based protocols, are as part of a stack of protocol-specific
+        configuration models.  For instance, these groupings could help define
+        the configuration module for SSH, TLS, or HTTP based application.</t>
     </section>
 
     <section title="Terminology">
@@ -97,7 +106,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-tcp-client.xml)
       </section>
 
       <section anchor="tcp-client-yang-module" title="YANG Module">
-        <t>This YANG module has normative references to <xref target="RFC6991"/>.</t>
+        <t>The ietf-tcp-client YANG module references <xref target="RFC6991"/>.</t>
         <t><figure>
             <artwork><![CDATA[
 <CODE BEGINS> file "ietf-tcp-client@YYYY-MM-DD.yang"
@@ -132,11 +141,46 @@ INSERT_TEXT_FROM_FILE(refs/ex-tcp-server.xml)
       </section>
 
       <section anchor="tcp-server-yang-module" title="YANG Module">
-        <t>This YANG module has normative references to <xref target="RFC6991"/>.</t>
+        <t>The ietf-tcp-server YANG module references <xref target="RFC6991"/>.</t>
         <t><figure>
             <artwork><![CDATA[
 <CODE BEGINS> file "ietf-tcp-server@YYYY-MM-DD.yang"
 INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
+<CODE ENDS>
+]]></artwork>
+          </figure></t>
+      </section>
+    </section>
+
+    <section anchor="tcp-common-model" title="The TCP Common Model">
+      <section title="Tree Diagram">
+        <t>This section provides a tree diagram <xref target="RFC8340"/> for
+        the "ietf-tcp-common" module.</t>
+
+        <t><figure>
+            <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ietf-tcp-common-tree.txt)
+]]></artwork>
+          </figure></t>
+      </section>
+
+      <section title="Example Usage">
+        <t>This section presents an example showing the tcp-common-grouping
+        populated with some data.</t>
+        <t>
+          <figure>
+            <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-tcp-common.xml)
+]]></artwork>
+          </figure></t>
+      </section>
+
+      <section anchor="tcp-common-yang-module" title="YANG Module">
+        <t>The ietf-tcp-common YANG module references <xref target="RFC6991"/>.</t>
+        <t><figure>
+            <artwork><![CDATA[
+<CODE BEGINS> file "ietf-tcp-common@YYYY-MM-DD.yang"
+INSERT_TEXT_FROM_FILE(ietf-tcp-common@YYYY-MM-DD.yang)
 <CODE ENDS>
 ]]></artwork>
           </figure></t>
@@ -210,6 +254,11 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
         target="RFC6020"/>, the following registrations are requested:</t>
         <t><figure>
             <artwork>
+   name:         ietf-tcp-common
+   namespace:    urn:ietf:params:xml:ns:yang:ietf-tcp-common
+   prefix:       tcpcmn
+   reference:    RFC XXXX
+
    name:         ietf-tcp-client
    namespace:    urn:ietf:params:xml:ns:yang:ietf-tcp-client
    prefix:       tcpc
