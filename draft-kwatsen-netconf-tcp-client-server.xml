@@ -25,7 +25,9 @@
       </address>
     </author>
     <author fullname="Michael Scharf" initials="M." surname="Scharf">
-      <organization>Hochschule Esslingen - University of Applied Sciences</organization>
+      <organization abbrev="Hochschule Esslingen">
+        Hochschule Esslingen - University of Applied Sciences
+      </organization>
       <address>
         <email>michael.scharf@hs-esslingen.de</email>
       </address>
@@ -209,21 +211,25 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-common@YYYY-MM-DD.yang)
       network environments. Write operations (e.g., edit-config) to these data
       nodes without proper protection can have a negative effect on network
       operations. These are the subtrees and data nodes and their
-      sensitivity/vulnerability: <list hangIndent="6" style="hanging">
-        <t hangText="   None of the writable/creatable/deletable data nodes
-          in the YANG modules defined in this document are considered more
-          sensitive or vulnerable then standard configuration."/>
-        </list></t>
+      sensitivity/vulnerability:
+        <list hangIndent="6" style="hanging">
+          <t hangText="   None of the writable/creatable/deletable data nodes
+            in the YANG modules defined in this document are considered more
+            sensitive or vulnerable then standard configuration."/>
+        </list>
+      </t>
 
       <t>Some of the readable data nodes in the YANG modules may be considered
       sensitive or vulnerable in some network environments. It is thus
       important to control read access (e.g., via get, get-config, or
       notification) to these data nodes. These are the subtrees and data nodes
-      and their sensitivity/vulnerability: <list hangIndent="6" style="hanging">
-        <t hangText="   None of the readable data nodes in the YANG modules
-          defined in this document are considered more sensitive or vulnerable
-          then standard configuration."/>
-        </list></t>
+      and their sensitivity/vulnerability:
+        <list hangIndent="6" style="hanging">
+          <t hangText="   None of the readable data nodes in the YANG modules
+            defined in this document are considered more sensitive or vulnerable
+            then standard configuration."/>
+        </list>
+      </t>
 
       <t>This document does not define any RPC actions and hence this section
       does not consider the security of RPCs.</t> 

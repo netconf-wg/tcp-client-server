@@ -72,38 +72,44 @@ module ietf-tcp-server {
 
   grouping tcp-server-grouping {
     description
-      "A reusable grouping for configuring a TCP server.";
-    container tcp-server-parameters {
+      "A reusable grouping for configuring a TCP server.
+
+       Note that this grouping uses fairly typical descendent
+       node names such that a stack of 'uses' statements will
+       have name conflicts.  It is intended that the consuming
+       data model will resolve the issue (e.g., by wrapping
+       the 'uses' statement in a container called 
+       'tcp-server-parameters').  This model purposely does
+       not do this itself so as to provide maximum flexibility
+       to consuming models.";
+
+    leaf local-address {
+      type inet:ip-address;
+      mandatory true;
       description
-        "A container to hold TCP server configuration.";
-      leaf local-address {
-        type inet:ip-address;
-        mandatory true;
+        "The local IP address to listen on for incoming
+         TCL client connections.  INADDR_ANY (0.0.0.0) or
+         INADDR6_ANY (0:0:0:0:0:0:0:0 a.k.a. ::) MUST be
+         used when the server is to listen on all IPv4 or
+         IPv6 addresses, respectively.";
+    }
+    leaf local-port {
+      type inet:port-number;
+      default "0";
+      description
+        "The local port number to listen on for incoming TCP
+         client connections.  An invalid default value (0)
+         is used (instead of 'mandatory true') so that an
+         application level data model may 'refine' it with
+         an application specific default port number value.";
+    }
+    uses tcpcmn:tcp-connection-grouping {
+      augment "keepalives" {
+        if-feature "tcp-server-keepalives";
         description
-          "The local IP address to listen on for incoming
-           TCL client connections.  INADDR_ANY (0.0.0.0) or
-           INADDR6_ANY (0:0:0:0:0:0:0:0 a.k.a. ::) MUST be
-           used when the server is to listen on all IPv4 or
-           IPv6 addresses, respectively.";
+          "Add an if-feature statement so that implementations
+           can choose to support TCP server keepalives.";
       }
-      leaf local-port {
-        type inet:port-number;
-        default "0";
-        description
-          "The local port number to listen on for incoming TCP
-           client connections.  An invalid default value (0)
-           is used (instead of 'mandatory true') so that an
-           application level data model may 'refine' it with
-           an application specific default port number value.";
-      }
-      uses tcpcmn:tcp-connection-grouping {
-        augment "keepalives" {
-          if-feature "tcp-server-keepalives";
-          description
-            "Add an if-feature statement so that implementations
-             can choose to support TCP server keepalives.";
-        }
-      } 
-    } // container tcp-server-parameters
-  } // grouping tcp-server-grouping
+    } 
+  }
 }

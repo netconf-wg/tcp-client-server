@@ -3,14 +3,6 @@ module ietf-tcp-common {
   namespace "urn:ietf:params:xml:ns:yang:ietf-tcp-common";
   prefix tcpcmn;
 
-/*
-import ietf-yang-types {
-    prefix yang;
-    reference
-      "RFC 6991: Common YANG Data Types";
-  }
-*/
-
   organization
     "IETF NETCONF (Network Configuration) Working Group and the
      IETF TCP Maintenance and Minor Extensions (TCPM) Working Group";
@@ -112,7 +104,12 @@ import ietf-yang-types {
   }
 
 /*
-  should this be a grouping or a container?  - remove for now?
+  The following is for a future bis...
+  This comment is here now so as support discussion with TCPM.
+  This comment will be removed before publication.
+
+  Should future system-level parameters be defined as a 
+  grouping or a container?
 
   grouping tcp-system-grouping {
     description

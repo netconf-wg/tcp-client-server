@@ -72,59 +72,65 @@ module ietf-tcp-client {
 
   grouping tcp-client-grouping {
     description
-      "A reusable grouping for configuring a TCP client.";
-    container tcp-client-parameters {
+      "A reusable grouping for configuring a TCP client.
+      
+      Note that this grouping uses fairly typical descendent
+       node names such that a stack of 'uses' statements will
+       have name conflicts.  It is intended that the consuming
+       data model will resolve the issue (e.g., by wrapping
+       the 'uses' statement in a container called 
+       'tcp-client-parameters').  This model purposely does
+       not do this itself so as to provide maximum flexibility
+       to consuming models.";
+
+    leaf remote-address {
+      type inet:host;
+      mandatory true;
       description
-        "A container to hold TCP client configuration.";
-      leaf remote-address {
-        type inet:host;
-        mandatory true;
+        "The IP address or hostname of the remote peer to
+         establish a connection with.  If a domain name is
+         configured, then the DNS resolution should happen on
+         each connection attempt.  If the the DNS resolution
+         results in multiple IP addresses, the IP addresses
+         are tried according to local preference order until
+         a connection has been established or until all IP
+         addresses have failed.";
+    }
+    leaf remote-port {
+      type inet:port-number;
+      default "0";
+      description
+        "The IP port number for the remote peer to establish a
+         connection with.  An invalid default value (0) is used
+         (instead of 'mandatory true') so that as application
+         level data model may 'refine' it with an application
+         specific default port number value.";
+    }
+    leaf local-address {
+      type inet:ip-address;
+      description
+        "The local IP address/interface (VRF?) to bind to for when
+         connecting to the remote peer.  INADDR_ANY ('0.0.0.0') or
+         INADDR6_ANY ('0:0:0:0:0:0:0:0' a.k.a. '::') MAY be used to
+         explicitly indicate the implicit default, that the server
+         can bind to any IPv4 or IPv6 addresses, respectively.";
+    }
+    leaf local-port {
+      type inet:port-number;
+      default "0";
+      description
+        "The local IP port number to bind to for when connecting
+         to the remote peer.  The port number '0', which is the
+         default value, indicates that any available local port
+         number may be used.";
+    }
+    uses tcpcmn:tcp-connection-grouping {
+      augment "keepalives" {
+        if-feature "tcp-client-keepalives";
         description
-          "The IP address or hostname of the remote peer to
-           establish a connection with.  If a domain name is
-           configured, then the DNS resolution should happen on
-           each connection attempt.  If the the DNS resolution
-           results in multiple IP addresses, the IP addresses
-           are tried according to local preference order until
-           a connection has been established or until all IP
-           addresses have failed.";
+          "Add an if-feature statement so that implementations
+           can choose to support TCP client keepalives.";
       }
-      leaf remote-port {
-        type inet:port-number;
-        default "0";
-        description
-          "The IP port number for the remote peer to establish a
-           connection with.  An invalid default value (0) is used
-           (instead of 'mandatory true') so that as application
-           level data model may 'refine' it with an application
-           specific default port number value.";
-      }
-      leaf local-address {
-        type inet:ip-address;
-        description
-          "The local IP address/interface (VRF?) to bind to for when
-           connecting to the remote peer.  INADDR_ANY ('0.0.0.0') or
-           INADDR6_ANY ('0:0:0:0:0:0:0:0' a.k.a. '::') MAY be used to
-           explicitly indicate the implicit default, that the server
-           can bind to any IPv4 or IPv6 addresses, respectively.";
-      }
-      leaf local-port {
-        type inet:port-number;
-        default "0";
-        description
-          "The local IP port number to bind to for when connecting
-           to the remote peer.  The port number '0', which is the
-           default value, indicates that any available local port
-           number may be used.";
-      }
-      uses tcpcmn:tcp-connection-grouping {
-        augment "keepalives" {
-          if-feature "tcp-client-keepalives";
-          description
-            "Add an if-feature statement so that implementations
-             can choose to support TCP client keepalives.";
-        }
-      }
-    } // container tcp-client-parameters
-  } // grouping tcp-client-grouping
+    }
+  }
 }
