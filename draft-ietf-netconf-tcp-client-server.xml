@@ -13,7 +13,7 @@
 <?rfc-ext allow-markup-in-artwork="yes" ?>
 <?rfc-ext include-index="no" ?>
 <!--<?rfc strict="no"?> -->
-<rfc category="std" docName="draft-kwatsen-netconf-tcp-client-server-latest"
+<rfc category="std" docName="draft-ietf-netconf-tcp-client-server-latest"
      ipr="trust200902">
   <front>
     <title abbrev="Groupings for TCP Clients and Servers">YANG Groupings for
@@ -71,9 +71,9 @@
         and the third defines a grouping common to the TCP clients and TCP
         servers.</t>
         <t>It is intended that these groupings will be used either standalone,
-        for TCP-based protocols, are as part of a stack of protocol-specific
+        for TCP-based protocols, as part of a stack of protocol-specific
         configuration models.  For instance, these groupings could help define
-        the configuration module for SSH, TLS, or HTTP based application.</t>
+        the configuration module for SSH, TLS, or HTTP based applications.</t>
     </section>
 
     <section title="Terminology">
