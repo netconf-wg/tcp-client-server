@@ -297,15 +297,20 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-common@YYYY-MM-DD.yang)
       <?rfc include="reference.RFC.8340.xml"?>
     </references>
 
-<!--
     <section title="Change Log">
       <section title="00 to 01">
-        <t><list style="symbols">
-          </list></t>
+        <t>
+          <list style="symbols">
+            <t>Added 'local-binding-supported' feature to TCP-client model.</t>
+            <t>Added 'keepalives-supported' feature to TCP-common model.</t>
+            <t>Added 'external-endpoint-values' container and 'external-endpoints' feature to TCP-server model.</t>
+          </list>
+        </t>
       </section>
 
     </section>
 
+    <!--
     <section numbered="no" title="Acknowledgements">
       <t>The authors would like to thank for following for lively discussions
         on list and in the halls (ordered by last name):

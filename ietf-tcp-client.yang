@@ -62,6 +62,12 @@ module ietf-tcp-client {
 
   // Features
 
+  feature local-binding-supported {
+    description
+      "Indicates that the server supports configuring local bindings,
+       the 'local-address' and 'local-port' nodes.";
+  }
+
   feature tcp-client-keepalives {
     description
       "Per socket TCP keepalive parameters are configurable for
@@ -107,6 +113,7 @@ module ietf-tcp-client {
          specific default port number value.";
     }
     leaf local-address {
+      if-feature "local-binding-supported";
       type inet:ip-address;
       description
         "The local IP address/interface (VRF?) to bind to for when
@@ -116,6 +123,7 @@ module ietf-tcp-client {
          can bind to any IPv4 or IPv6 addresses, respectively.";
     }
     leaf local-port {
+      if-feature "local-binding-supported";
       type inet:port-number;
       default "0";
       description
