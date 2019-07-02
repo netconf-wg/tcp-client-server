@@ -64,8 +64,9 @@ module ietf-tcp-client {
 
   feature local-binding-supported {
     description
-      "Indicates that the server supports configuring local bindings,
-       the 'local-address' and 'local-port' nodes.";
+      "Indicates that the server supports configuring local
+       bindings (i.e., the local address and local port) for
+       TCP clients.";
   }
 
   feature tcp-client-keepalives {

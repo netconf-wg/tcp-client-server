@@ -307,7 +307,13 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-common@YYYY-MM-DD.yang)
           </list>
         </t>
       </section>
-
+      <section title="01 to 02">
+        <t>
+          <list style="symbols">
+            <t>Removed the 'external-endpoint-values' container and 'external-endpoints' feature from the TCP-server model.</t>
+          </list>
+        </t>
+      </section>
     </section>
 
     <!--
