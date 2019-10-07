@@ -97,7 +97,7 @@ module ietf-tcp-client {
         "The IP address or hostname of the remote peer to
          establish a connection with.  If a domain name is
          configured, then the DNS resolution should happen on
-         each connection attempt.  If the the DNS resolution
+         each connection attempt.  If the DNS resolution
          results in multiple IP addresses, the IP addresses
          are tried according to local preference order until
          a connection has been established or until all IP

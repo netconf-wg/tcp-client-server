@@ -67,18 +67,22 @@ module ietf-tcp-common {
       description
         "Configures the keep-alive policy, to proactively test the
          aliveness of the TCP peer.  An unresponsive TCP peer is
-         dropped after approximately (idle-time * 60) + (max-probes
+         dropped after approximately (idle-time + max-probes
          * probe-interval) seconds.";
       leaf idle-time {
         type uint16 {
           range "1..max";
         }
         units "seconds";
-        mandatory true;
+        default 7200;
         description
           "Sets the amount of time after which if no data has been
            received from the TCP peer, a TCP-level probe message
-           will be sent to test the aliveness of the TCP peer.";
+           will be sent to test the aliveness of the TCP peer.
+           The default is two hours (7200 seconds), per RFC 1122.";
+        reference
+          "RFC 1122:
+            Requirements for Internet Hosts -- Communication Layers";
       }
       leaf max-probes {
         type uint16 {
@@ -97,7 +101,9 @@ module ietf-tcp-common {
         units "seconds";
         mandatory true;
         description
-          "Sets the time interval between failed probes.";
+          "Sets the time interval between failed probes. The interval
+           SHOULD be significantly longer than one second in order to
+           avoid harm on a congested link.";
       }
     } // container keepalives
   } // grouping tcp-common-grouping
