@@ -377,7 +377,6 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
             <t>Moved the common model section to be before the client and server specific sections.</t>
             <t>Added sections "Model Scope" and "Usage Guidelines for Configuring TCP Keep-Alives" to
               the common model section.</t>
-            <t>Changed "idle-time" from "mandatory true" to "default 7200".</t>
           </list>
         </t>
       </section>

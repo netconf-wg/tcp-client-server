@@ -74,12 +74,12 @@ module ietf-tcp-common {
           range "1..max";
         }
         units "seconds";
-        default 7200;
+        mandatory true;
         description
           "Sets the amount of time after which if no data has been
            received from the TCP peer, a TCP-level probe message
            will be sent to test the aliveness of the TCP peer.
-           The default is two hours (7200 seconds), per RFC 1122.";
+           Two hours (7200 seconds) is safe value, per RFC 1122.";
         reference
           "RFC 1122:
             Requirements for Internet Hosts -- Communication Layers";
