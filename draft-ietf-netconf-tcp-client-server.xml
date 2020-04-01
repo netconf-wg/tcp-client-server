@@ -202,7 +202,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-tcp-client.xml)
         <t><figure>
             <preamble>&lt;CODE BEGINS&gt; file "ietf-tcp-client@YYYY-MM-DD.yang"</preamble>
             <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(ietf-tcp-client@YYYY-MM-DD.yang,71)
+INSERT_TEXT_FROM_FILE(ietf-tcp-client@YYYY-MM-DD.yang)
 ]]></artwork>
             <postamble>&lt;CODE ENDS&gt;</postamble>
           </figure></t>
@@ -377,6 +377,13 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
             <t>Moved the common model section to be before the client and server specific sections.</t>
             <t>Added sections "Model Scope" and "Usage Guidelines for Configuring TCP Keep-Alives" to
               the common model section.</t>
+          </list>
+        </t>
+      </section>
+      <section title="03 to 04">
+        <t>
+          <list style="symbols">
+            <t>Fixed a few typos.</t>
           </list>
         </t>
       </section>

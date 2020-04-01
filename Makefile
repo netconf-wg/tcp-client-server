@@ -52,8 +52,8 @@ $(next).xml: $(draft).xml ietf-tcp-client.yang ietf-tcp-server.yang
 	sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" ietf-tcp-common.yang > ietf-tcp-common\@$(shell date +%Y-%m-%d).yang
 	sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" ietf-tcp-client.yang > ietf-tcp-client\@$(shell date +%Y-%m-%d).yang
 	sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" ietf-tcp-server.yang > ietf-tcp-server\@$(shell date +%Y-%m-%d).yang
-	cd refs; ./validate-all.sh; ./gen-trees.sh; cd ..;
-	./.insert-figures.sh $@ > tmp; mv tmp $@
+	cd refs && ./validate-all.sh && ./gen-trees.sh && cd ..
+	./.insert-figures.sh $@ > tmp && mv tmp $@
 	rm refs/*-tree*.txt
 
 

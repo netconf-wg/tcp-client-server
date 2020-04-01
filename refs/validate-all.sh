@@ -1,39 +1,76 @@
 #!/bin/bash
 
-echo "Testing ietf-tcp-client (pyang)..."
-pyang --ietf --max-line-length=69 -p ../ ../ietf-tcp-client\@*.yang
+run_unix_cmd() {
+  # $1 is the line number
+  # $2 is the cmd to run
+  # $3 is the expected exit code
+  output=`$2 2>&1`
+  exit_code=$?
+  if [[ $exit_code -ne $3 ]]; then
+    printf "failed (incorrect exit status code) on line $1.\n"
+    printf "  - exit code: $exit_code (expected $3)\n"
+    printf "  - command: $2\n"
+    if [[ -z $output ]]; then
+      printf "  - output: <none>\n\n"
+    else
+      printf "  - output: <starts on next line>\n$output\n\n"
+    fi
+    exit 1
+  fi
+}
 
-echo "Testing ietf-tcp-client (yanglint)..."
-yanglint -p ../ ../ietf-tcp-client\@*.yang
+printf "Testing ietf-tcp-client (pyang)..."
+command="pyang -Werror --ietf --max-line-length=69 -p ../ ../ietf-tcp-client\@*.yang"
+run_unix_cmd $LINENO "$command" 0
+printf "okay.\n"
 
-echo "Testing ietf-tcp-server (pyang)..."
-pyang --ietf --max-line-length=69 -p ../ ../ietf-tcp-server\@*.yang
+printf "Testing ietf-tcp-client (yanglint)..."
+command="yanglint -p ../ ../ietf-tcp-client\@*.yang"
+run_unix_cmd $LINENO "$command" 0
+printf "okay.\n"
 
-echo "Testing ietf-tcp-server (yanglint)..."
-yanglint -p ../ ../ietf-tcp-server\@*.yang
+printf "Testing ietf-tcp-server (pyang)..."
+command="pyang -Werror --ietf --max-line-length=69 -p ../ ../ietf-tcp-server\@*.yang"
+run_unix_cmd $LINENO "$command" 0
+printf "okay.\n"
 
-echo "Testing ietf-tcp-common (pyang)..."
-pyang --ietf --max-line-length=69 -p ../ ../ietf-tcp-common\@*.yang
+printf "Testing ietf-tcp-server (yanglint)..."
+command="yanglint -p ../ ../ietf-tcp-server\@*.yang"
+run_unix_cmd $LINENO "$command" 0
+printf "okay.\n"
 
-echo "Testing ietf-tcp-common (yanglint)..."
-yanglint -p ../ ../ietf-tcp-common\@*.yang
+printf "Testing ietf-tcp-common (pyang)..."
+command="pyang -Werror --ietf --max-line-length=69 -p ../ ../ietf-tcp-common\@*.yang"
+run_unix_cmd $LINENO "$command" 0
+printf "okay.\n"
+
+printf "Testing ietf-tcp-common (yanglint)..."
+command="yanglint -p ../ ../ietf-tcp-common\@*.yang"
+run_unix_cmd $LINENO "$command" 0
+printf "okay.\n"
 
 
-echo "Testing ex-tcp-client.xml..."
+printf "Testing ex-tcp-client.xml..."
 name=`ls -1 ../ietf-tcp-client\@*.yang | sed 's/\.\.\///'`
 sed 's/^}/container tcp-client { uses tcp-client-grouping; }}/' ../ietf-tcp-client\@*.yang > $name
-yanglint -m -s $name -p ../ ex-tcp-client.xml
+command="yanglint -m -s $name -p ../ ex-tcp-client.xml"
+run_unix_cmd $LINENO "$command" 0
+printf "okay.\n"
 rm $name
 
-echo "Testing ex-tcp-server.xml..."
+printf "Testing ex-tcp-server.xml..."
 name=`ls -1 ../ietf-tcp-server\@*.yang | sed 's/\.\.\///'`
 sed 's/^}/container tcp-server { uses tcp-server-grouping; }}/' ../ietf-tcp-server\@*.yang > $name
-yanglint -m -s $name -p ../ ex-tcp-server.xml
+command="yanglint -m -s $name -p ../ ex-tcp-server.xml"
+run_unix_cmd $LINENO "$command" 0
+printf "okay.\n"
 rm $name
 
-echo "Testing ex-tcp-common.xml..."
+printf "Testing ex-tcp-common.xml..."
 name=`ls -1 ../ietf-tcp-common\@*.yang | sed 's/\.\.\///'`
 sed 's/^}/container tcp-common { uses tcp-common-grouping; }}/' ../ietf-tcp-common\@*.yang > $name
-yanglint -m -s $name ex-tcp-common.xml
+command="yanglint -m -s $name ex-tcp-common.xml"
+run_unix_cmd $LINENO "$command" 0
+printf "okay.\n"
 rm $name
 
