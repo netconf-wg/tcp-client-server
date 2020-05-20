@@ -102,14 +102,12 @@ INSERT_TEXT_FROM_FILE(../client-server-overview-snippet.xml,158)
           able to turn them on or off for each TCP connection, and that they MUST
           default to off.</t>
         <t>Keep-alive mechanisms exist in many protocols. Depending on the protocol
-          stack, TCP keep-alives may only be one out of several alternatives. Which
-          mechanism to use depends on the use case and application requirements. If
+          stack, TCP keep-alives may only be one out of several alternatives.  Which
+          mechanism(s) to use depends on the use case and application requirements. If
           keep-alives are needed by an application, it is RECOMMENDED that the
-          aliveness check happens at the highest protocol layer possible that is
-          meaningful to the application, in order to maximize the depth of the
-          aliveness check.</t>
-        <t>[[TODO: Further guidance on keep-alives is provided in draft-xyz-tsvwg-... ]]</t>
-        <t>A TCP keep-alive mechanism should only be invoked in server applications
+          aliveness check happens only at the protocol layers that are meaningful
+          to the application.</t>
+        <t>A TCP keep-alive mechanism SHOULD only be invoked in server applications
           that might otherwise hang indefinitely and consume resources unnecessarily
           if a client crashes or aborts a connection during a network failure [RFC1122].
           TCP keep-alives may consume significant resources both in the network and
@@ -156,7 +154,7 @@ INSERT_TEXT_FROM_FILE(refs/ietf-tcp-common-tree.txt)
       </section>
 
       <section title="Example Usage">
-        <t>This section presents an example showing the tcp-common-grouping
+        <t>This section presents an example showing the "tcp-common-grouping"
         populated with some data.</t>
         <t>
           <figure>
@@ -177,6 +175,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-common@YYYY-MM-DD.yang)
         </figure></t>
       </section>
     </section>
+
     <section anchor="tcp-client-model" title="The TCP Client Model">
       <section title="Tree Diagram">
         <t>This section provides a tree diagram <xref target="RFC8340"/> for
@@ -190,7 +189,7 @@ INSERT_TEXT_FROM_FILE(refs/ietf-tcp-client-tree.txt)
       </section>
 
       <section title="Example Usage">
-        <t>This section presents an example showing the tcp-client-grouping
+        <t>This section presents an example showing the "tcp-client-grouping"
         populated with some data.</t>
         <t>
           <figure>
@@ -225,7 +224,7 @@ INSERT_TEXT_FROM_FILE(refs/ietf-tcp-server-tree.txt)
       </section>
 
       <section title="Example Usage">
-        <t>This section presents an example showing the tcp-server-grouping
+        <t>This section presents an example showing the "tcp-server-grouping"
         populated with some data.</t>
         <t>
           <figure>
@@ -393,6 +392,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
       <section title="04 to 05">
         <t>
           <list style="symbols">
+            <t>Removed commented out "grouping tcp-system-grouping" statement kept for reviewers.</t>
             <t>Added a "Note to Reviewers" note to first page.</t>
           </list>
         </t>

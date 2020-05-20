@@ -116,21 +116,4 @@ module ietf-tcp-common {
      uses tcp-common-grouping;
   }
 
-/*
-  The following is for a future bis...
-  This comment is here now so as support discussion with TCPM.
-  This comment will be removed before publication.
-
-  Should future system-level parameters be defined as a 
-  grouping or a container?
-
-  grouping tcp-system-grouping {
-    description
-      "A reusable grouping for configuring TCP parameters common
-       to the operating system as a whole.";
-
-    // currently just a placeholder
-  }
-*/
-
 }
