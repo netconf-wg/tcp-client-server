@@ -17,7 +17,7 @@
      ipr="trust200902">
   <front>
     <title abbrev="Groupings for TCP Clients and Servers">YANG Groupings for
-    TCP Clients and TCP Servers</title>
+      TCP Clients and TCP Servers</title>
     <author fullname="Kent Watsen" initials="K." surname="Watsen">
       <organization>Watsen Networks</organization>
       <address>
@@ -35,34 +35,37 @@
     <date/>
     <area>Operations</area>
     <workgroup>NETCONF Working Group</workgroup>
-
     <abstract>
       <t>This document defines three YANG modules: the first defines a grouping
         for configuring a generic TCP client, the second defines a grouping
         for configuring a generic TCP server, and the third defines a grouping
         common to the TCP clients and TCP servers.</t>
     </abstract>
-
     <note title="Editorial Note (To be removed by RFC Editor)">
-      <t>This draft contains many placeholder values that need to be replaced
-      with finalized values at the time of publication. This note summarizes
-      all of the substitutions that are needed. No other RFC Editor
-      instructions are specified elsewhere in this document.</t>
-
+      <t>This draft contains placeholder values that need to be replaced
+        with finalized values at the time of publication. This note summarizes
+        all of the substitutions that are needed. No other RFC Editor
+        instructions are specified elsewhere in this document.</t>
+      <t>Artwork in this document contains shorthand references to drafts in
+        progress.  Please apply the following replacements:
+        <list style="symbols">
+          <t><spanx style="verb">DDDD</spanx> --&gt; the assigned RFC value for this draft</t>
+        </list>
+      </t>
       <t>Artwork in this document contains placeholder values for the date of
-      publication of this draft. Please apply the following replacement: <list
-          style="symbols">
-          <t><spanx style="verb">YYYY-MM-DD</spanx> --&gt; the publication
-          date of this draft</t>
-        </list></t>
-
+        publication of this draft. Please apply the following replacement:
+        <list style="symbols">
+          <t><spanx style="verb">YYYY-MM-DD</spanx> --&gt; the publication date of this draft</t>
+        </list>
+      </t>
       <t>The following Appendix section is to be removed prior to publication:
-      <list style="symbols">
+        <list style="symbols">
           <t>Appendix A. Change Log</t>
-        </list></t>
+        </list>
+      </t>
     </note>
+INSERT_TEXT_FROM_FILE(../client-server-overview-snippet.xml,158)
   </front>
-
   <middle>
     <section title="Introduction">
       <t>This document defines three YANG 1.1 <xref target="RFC7950"/> modules:
@@ -320,17 +323,17 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
    name:         ietf-tcp-common
    namespace:    urn:ietf:params:xml:ns:yang:ietf-tcp-common
    prefix:       tcpcmn
-   reference:    RFC XXXX
+   reference:    RFC DDDD
 
    name:         ietf-tcp-client
    namespace:    urn:ietf:params:xml:ns:yang:ietf-tcp-client
    prefix:       tcpc
-   reference:    RFC XXXX
+   reference:    RFC DDDD
 
    name:         ietf-tcp-server
    namespace:    urn:ietf:params:xml:ns:yang:ietf-tcp-server
    prefix:       tcps
-   reference:    RFC XXXX
+   reference:    RFC DDDD
 </artwork>
           </figure></t>
       </section>
@@ -384,6 +387,13 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
         <t>
           <list style="symbols">
             <t>Fixed a few typos.</t>
+          </list>
+        </t>
+      </section>
+      <section title="04 to 05">
+        <t>
+          <list style="symbols">
+            <t>Added a "Note to Reviewers" note to first page.</t>
           </list>
         </t>
       </section>
