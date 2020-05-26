@@ -397,6 +397,13 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           </list>
         </t>
       </section>
+      <section title="05 to 06">
+        <t>
+          <list style="symbols">
+            <t>Started adding TCP proxy config to ietf-http-client...</t>
+          </list>
+        </t>
+      </section>
     </section>
 
     <!--
