@@ -81,6 +81,24 @@ module ietf-tcp-client {
        TCP clients on the server implementing this feature.";
   }
 
+  feature socks5-gss-api {
+    description
+      "Indicates that the server supports authenticating
+       using GSSAPI when initiating TCP connections via
+       and SOCKS Version 5 proxy server.";
+    reference
+      "RFC 1928: SOCKS Protocol Version 5";
+  }
+
+  feature socks5-username-password {
+    description
+      "Indicates that the server supports authenticating
+       using username/password when initiating TCP 
+       connections via and SOCKS Version 5 proxy
+       server.";
+    reference
+      "RFC 1928: SOCKS Protocol Version 5";
+  }
 
   // Groupings
 
@@ -142,10 +160,12 @@ module ietf-tcp-client {
     }
 
     container proxy-server {
-      //nacm:default-deny-write;
       if-feature "proxy-connect";
       presence
-        "Indicates that a proxy connection is configured.";
+        "Indicates that a proxy connection is configured.
+         Present so that the 'proxy-type' node's 'mandatory
+         true' doesn't imply that the proxy connection
+         must be configured.";
       choice proxy-type {
         mandatory true;
         description
@@ -211,36 +231,62 @@ module ietf-tcp-client {
                 "The IP port number for the proxy server.";
             }
             container authentication-parameters {
-              container gss-api {
-                description
-                  "Contains GSS API configuration.";
-                reference
-                  "RFC 1928: SOCKS Protocol Version 5
-                   RFC 2744: Generic Security Service API Version 2
-                             : C-bindings";
-              }
-              container username-password {
-                leaf username {
-                  type string;
-                  description
-                    "The 'username' value to use.";
-                }
-                leaf password {
-                  type string;
-                  description
-                    "The 'password' value to use.";
-                }
-                description
-                  "Contains Username/Password configuration.";
-                reference
-                  "RFC 1929:
-                    Username/Password Authentication for SOCKS V5";
-              }
+              presence
+                "Indicates that an authentication mechanism
+                 has been configured.  Present so that the
+                 'auth-type' node's 'mandatory true' doesn't
+                 imply that an authentication mechanism
+                 must be configured.";
               description
-                "Configuration for various authentication methods.
-                 For a complete list of methods, please see
+                "A container for SOCKS Version 5 authentication
+                 mechanisms.
+
+                 A complete list of methods is defined at:
                  https://www.iana.org/assignments/socks-methods
                  /socks-methods.xhtml.";
+              reference
+                "RFC 1928: SOCKS Protocol Version 5";
+              choice auth-type {
+                mandatory true;
+                description
+                  "A choice amongst supported SOCKS Version 5
+                   authentication mechanisms.";
+                case gss-api {
+                  if-feature socks5-gss-api;
+                  container gss-api {
+                    description
+                      "Contains GSS-API configuration.  Defines
+                       as an empty container to enable specific
+                       GSS-API configuration to be augmented in
+                       by future modules.";
+                    reference
+                      "RFC 1928: SOCKS Protocol Version 5
+                       RFC 2743: Generic Security Service
+                                 Application Program Interface
+                                 Version 2, Update 1";
+                  }
+                }
+                case username-password {
+                  if-feature socks5-username-password;
+                  container username-password {
+                    leaf username {
+                      type string;
+                      description
+                        "The 'username' value to use.";
+                    }
+                    leaf password {
+                      type string;
+                      description
+                        "The 'password' value to use.";
+                    }
+                    description
+                      "Contains Username/Password configuration.";
+                    reference
+                      "RFC 1929: Username/Password Authentication
+                                 for SOCKS V5";
+                  }
+                }
+              }
             }
             description
               "Parameters for connecting to a TCP-based proxy server

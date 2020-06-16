@@ -400,7 +400,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
       <section title="05 to 06">
         <t>
           <list style="symbols">
-            <t>Started adding TCP proxy config to ietf-http-client...</t>
+            <t>Added support for TCP proxies.</t>
           </list>
         </t>
       </section>
