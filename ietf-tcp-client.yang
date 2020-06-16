@@ -212,7 +212,6 @@ module ietf-tcp-client {
             }
             container authentication-parameters {
               container gss-api {
-                // FIXME: depends on underlying securty service?
                 description
                   "Contains GSS API configuration.";
                 reference
