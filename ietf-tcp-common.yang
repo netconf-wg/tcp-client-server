@@ -63,7 +63,10 @@ module ietf-tcp-common {
        whole.";
     container keepalives {
       if-feature "keepalives-supported";
-      presence "Indicates that keepalives are enabled.";
+      presence
+       "Indicates that keepalives are enabled.  Present so that
+        the decendant nodes' 'mandatory true' doesn't imply that
+        this node  must be configured.";
       description
         "Configures the keep-alive policy, to proactively test the
          aliveness of the TCP peer.  An unresponsive TCP peer is

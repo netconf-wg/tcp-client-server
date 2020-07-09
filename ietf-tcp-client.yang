@@ -9,6 +9,12 @@ module ietf-tcp-client {
       "RFC 6991: Common YANG Data Types";
   }
 
+  import ietf-netconf-acm {
+    prefix nacm;
+    reference
+      "RFC 8341: Network Configuration Access Control Model";
+  }
+
   import ietf-tcp-common {
     prefix tcpcmn;
     reference
@@ -275,6 +281,7 @@ module ietf-tcp-client {
                         "The 'username' value to use.";
                     }
                     leaf password {
+                      nacm:default-deny-all;
                       type string;
                       description
                         "The 'password' value to use.";
