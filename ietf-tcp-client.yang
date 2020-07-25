@@ -277,12 +277,14 @@ module ietf-tcp-client {
                   container username-password {
                     leaf username {
                       type string;
+                      mandatory true;
                       description
                         "The 'username' value to use.";
                     }
                     leaf password {
                       nacm:default-deny-all;
                       type string;
+                      mandatory true;
                       description
                         "The 'password' value to use.";
                     }

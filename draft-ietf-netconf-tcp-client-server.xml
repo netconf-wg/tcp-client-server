@@ -313,14 +313,24 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-client-grouping.no-expand.txt)
       </section>
 
       <section title="Example Usage">
-        <t>This section presents an example showing the "tcp-client-grouping"
-        populated with some data.</t>
+        <t>This section presents two examples showing the "tcp-client-grouping"
+          populated with some data.  This example shows a TCP-client configured to
+          not connect via a proxy:</t>
         <t>
           <figure>
             <artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-tcp-client.xml)
 ]]></artwork>
-          </figure></t>
+          </figure>
+        </t>
+        <t>This example shows a TCP-client configured to connect via a proxy:</t>
+        <t>
+          <figure>
+            <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-tcp-client-proxy.xml)
+]]></artwork>
+          </figure>
+        </t>
       </section>
 
       <section anchor="tcp-client-yang-module" title="YANG Module">
@@ -527,13 +537,17 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
     </section>
 
     <section title="IANA Considerations">
-      <section title="The IETF XML Registry">
+      <section title='The "IETF XML" Registry'>
         <t>This document registers two URIs in the "ns" subregistry of the
         IETF XML Registry <xref target="RFC3688"/>. Following the format in
         <xref target="RFC3688"/>, the following registrations are
         requested:</t>
         <t><figure>
             <artwork>
+   URI: urn:ietf:params:xml:ns:yang:ietf-tcp-common
+   Registrant Contact: The NETCONF WG of the IETF.
+   XML: N/A, the requested URI is an XML namespace.
+
    URI: urn:ietf:params:xml:ns:yang:ietf-tcp-client
    Registrant Contact: The NETCONF WG of the IETF.
    XML: N/A, the requested URI is an XML namespace.
@@ -545,7 +559,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           </figure></t>
       </section>
 
-      <section title="The YANG Module Names Registry">
+      <section title='The "YANG Module Names" Registry'>
         <t>This document registers two YANG modules in the YANG Module Names
         registry <xref target="RFC6020"/>. Following the format in <xref
         target="RFC6020"/>, the following registrations are requested:</t>
@@ -651,6 +665,17 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           <list style="symbols">
             <t>Expanded "Data Model Overview section(s) [remove "wall" of tree diagrams].</t>
             <t>Updated the Security Considerations section.</t>
+          </list>
+        </t>
+      </section>
+      <section title="08 to 09">
+        <t>
+          <list style="symbols">
+            <t>Added missing IANA registration for "ietf-tcp-common"</t>
+            <t>Added "mandatory true" for the "username" and "password" leafs</t>
+            <t>Added an example of a TCP-client configured to connect via a proxy</t>
+
+            <t>SUBMISSION PENDING!...</t>
           </list>
         </t>
       </section>

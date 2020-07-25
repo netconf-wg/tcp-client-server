@@ -58,6 +58,14 @@ run_unix_cmd $LINENO "$command" 0
 printf "okay.\n"
 rm $name
 
+printf "Testing ex-tcp-client-proxy.xml..."
+name=`ls -1 ../ietf-tcp-client\@*.yang | sed 's/\.\.\///'`
+sed 's/^}/container tcp-client { uses tcp-client-grouping; }}/' ../ietf-tcp-client\@*.yang > $name
+command="yanglint -m -s $name -p ../ ex-tcp-client-proxy.xml"
+run_unix_cmd $LINENO "$command" 0
+printf "okay.\n"
+rm $name
+
 printf "Testing ex-tcp-server.xml..."
 name=`ls -1 ../ietf-tcp-server\@*.yang | sed 's/\.\.\///'`
 sed 's/^}/container tcp-server { uses tcp-server-grouping; }}/' ../ietf-tcp-server\@*.yang > $name
