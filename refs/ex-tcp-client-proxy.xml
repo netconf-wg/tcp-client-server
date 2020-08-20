@@ -1,0 +1,23 @@
+<tcp-client xmlns="urn:ietf:params:xml:ns:yang:ietf-tcp-client">
+  <remote-address>www.example.com</remote-address>
+  <remote-port>443</remote-port>
+  <local-address>0.0.0.0</local-address>
+  <local-port>0</local-port>
+  <proxy-server>
+    <socks5-parameters>
+      <remote-address>proxy.my-domain.com</remote-address>
+      <remote-port>1080</remote-port>
+      <authentication-parameters>
+        <username-password>
+          <username>foobar</username>
+          <cleartext-password>secret</cleartext-password>
+        </username-password>
+      </authentication-parameters>
+    </socks5-parameters>
+  </proxy-server>
+  <keepalives>
+    <idle-time>15</idle-time>
+    <max-probes>3</max-probes>
+    <probe-interval>30</probe-interval>
+  </keepalives>
+</tcp-client>

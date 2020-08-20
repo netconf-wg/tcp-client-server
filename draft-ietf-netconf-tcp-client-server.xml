@@ -89,7 +89,16 @@ INSERT_TEXT_FROM_FILE(../common-intro-snippet.xml,150)
 
     <section anchor="tcp-common-model" title="The &quot;ietf-tcp-common&quot; Module">
 
-      <section title="Data Model Overview">
+      <t>This section defines a YANG 1.1 <xref target="RFC7950"/> module called
+        "ietf-tcp-common".  A high-level overview of the module is provided in
+        <xref target="common-overview"/>. Examples illustatrating the module's use
+        are provided in <xref target="common-examples">Examples</xref>. The YANG
+        module itself is defined in <xref target="common-yang-module"/>.</t>
+
+      <section title="Data Model Overview" anchor="common-overview">
+
+        <t>This section provides an overview of the "ietf-tcp-common" module
+          in terms of its features and groupings.</t>
 
         <section title="Model Scope" toc="exclude">
           <t>This document defines a common "grouping" statement for basic TCP connection
@@ -110,6 +119,10 @@ Features:
 ]]></artwork>
             </figure>
           </t>
+          <aside>
+            <t>The diagram above uses syntax that is similar to but not
+              defined in <xref target="RFC8340"/>.</t>
+          </aside>
         </section>
 
         <section title="Groupings" toc="exclude">
@@ -124,6 +137,10 @@ Groupings:
 ]]></artwork>
             </figure>
           </t>
+          <aside>
+            <t>The diagram above uses syntax that is similar to but not
+              defined in <xref target="RFC8340"/>.</t>
+          </aside>
           <t>Each of these groupings are presented in the following subsections.</t>
 
           <section title="The &quot;tcp-common-grouping&quot; Grouping" anchor="tcp-common-grouping">
@@ -141,7 +158,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-common-grouping.no-expand.txt)
               <li>The "keepalives" node is a "presence" node so that the decendent nodes'
                 "mandatory true" doesn't imply that keepalives must be configured.</li>
               <li>The "idle-time", "max-probes", and "probe-interval" nodes have the
-                common meanings.  Please see the YANG module in <xref target="tcp-common-yang-module"/>
+                common meanings.  Please see the YANG module in <xref target="common-yang-module"/>
                 for details.</li>
             </ul>
           </section>
@@ -217,7 +234,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-connection-grouping.no-expand.txt)
         </section>
       </section>
 
-      <section title="Example Usage">
+      <section title="Example Usage" anchor="common-examples">
         <t>This section presents an example showing the "tcp-common-grouping"
         populated with some data.</t>
         <t>
@@ -228,7 +245,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-tcp-common.xml)
           </figure></t>
       </section>
 
-      <section anchor="tcp-common-yang-module" title="YANG Module">
+      <section anchor="common-yang-module" title="YANG Module">
         <t>The ietf-tcp-common YANG module references <xref target="RFC6991"/>.</t>
         <t><figure>
             <preamble>&lt;CODE BEGINS&gt; file "ietf-tcp-common@YYYY-MM-DD.yang"</preamble>
@@ -241,7 +258,17 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-common@YYYY-MM-DD.yang)
     </section>
 
     <section anchor="tcp-client-model" title="The &quot;ietf-tcp-client&quot; Module">
-      <section title="Data Model Overview">
+
+      <t>This section defines a YANG 1.1 <xref target="RFC7950"/> module called
+        "ietf-tcp-client".  A high-level overview of the module is provided in
+        <xref target="client-overview"/>. Examples illustatrating the module's use
+        are provided in <xref target="client-examples">Examples</xref>. The YANG
+        module itself is defined in <xref target="client-yang-module"/>.</t>
+
+      <section title="Data Model Overview" anchor="client-overview">
+
+        <t>This section provides an overview of the "ietf-tcp-client" module
+          in terms of its features and groupings.</t>
 
         <section title="Features" toc="exclude">
           <t>The following diagram lists all the "feature" statements
@@ -258,6 +285,10 @@ Features:
 ]]></artwork>
             </figure>
           </t>
+          <aside>
+            <t>The diagram above uses syntax that is similar to but not
+              defined in <xref target="RFC8340"/>.</t>
+          </aside>
         </section>
 
         <section title="Groupings" toc="exclude">
@@ -271,6 +302,10 @@ Groupings:
 ]]></artwork>
             </figure>
           </t>
+          <aside>
+            <t>The diagram above uses syntax that is similar to but not
+              defined in <xref target="RFC8340"/>.</t>
+          </aside>
           <t>Each of these groupings are presented in the following subsections.</t>
 
           <section title="The &quot;tcp-client-grouping&quot; Grouping" anchor="tcp-client-grouping">
@@ -312,7 +347,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-client-grouping.no-expand.txt)
         </section>
       </section>
 
-      <section title="Example Usage">
+      <section title="Example Usage" anchor="client-examples">
         <t>This section presents two examples showing the "tcp-client-grouping"
           populated with some data.  This example shows a TCP-client configured to
           not connect via a proxy:</t>
@@ -333,7 +368,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-tcp-client-proxy.xml)
         </t>
       </section>
 
-      <section anchor="tcp-client-yang-module" title="YANG Module">
+      <section anchor="client-yang-module" title="YANG Module">
         <t>The ietf-tcp-client YANG module references <xref target="RFC6991"/>.</t>
         <t><figure>
             <preamble>&lt;CODE BEGINS&gt; file "ietf-tcp-client@YYYY-MM-DD.yang"</preamble>
@@ -347,7 +382,16 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-client@YYYY-MM-DD.yang)
 
     <section anchor="tcp-server-model" title="The &quot;ietf-tcp-server&quot; Module">
 
-      <section title="Data Model Overview">
+      <t>This section defines a YANG 1.1 <xref target="RFC7950"/> module called
+        "ietf-tcp-server".  A high-level overview of the module is provided in
+        <xref target="server-overview"/>. Examples illustatrating the module's use
+        are provided in <xref target="server-examples">Examples</xref>. The YANG
+        module itself is defined in <xref target="server-yang-module"/>.</t>
+
+      <section title="Data Model Overview" anchor="server-overview">
+
+        <t>This section provides an overview of the "ietf-tcp-server" module
+          in terms of its features and groupings.</t>
 
         <section title="Features" toc="exclude">
           <t>The following diagram lists all the "feature" statements
@@ -360,6 +404,10 @@ Features:
 ]]></artwork>
             </figure>
           </t>
+          <aside>
+            <t>The diagram above uses syntax that is similar to but not
+              defined in <xref target="RFC8340"/>.</t>
+          </aside>
         </section>
 
         <section title="Groupings" toc="exclude">
@@ -373,6 +421,10 @@ Groupings:
 ]]></artwork>
             </figure>
           </t>
+          <aside>
+            <t>The diagram above uses syntax that is similar to but not
+              defined in <xref target="RFC8340"/>.</t>
+          </aside>
           <t>Each of these groupings are presented in the following subsections.</t>
 
           <section title="The &quot;tcp-server-grouping&quot; Grouping" anchor="tcp-server-grouping">
@@ -403,7 +455,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-server-grouping.no-expand.txt)
         </section>
       </section>
 
-      <section title="Example Usage">
+      <section title="Example Usage" anchor="server-examples">
         <t>This section presents an example showing the "tcp-server-grouping"
         populated with some data.</t>
         <t>
@@ -414,7 +466,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-tcp-server.xml)
           </figure></t>
       </section>
 
-      <section anchor="tcp-server-yang-module" title="YANG Module">
+      <section anchor="server-yang-module" title="YANG Module">
         <t>The ietf-tcp-server YANG module references <xref target="RFC6991"/>.</t>
         <t>
           <figure>
@@ -601,15 +653,15 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
       <?rfc include="reference.RFC.8040.xml"?>
       <?rfc include="reference.RFC.8340.xml"?>
       <?rfc include="reference.RFC.8342.xml"?>
-        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-crypto-types.xml"/>
-        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-trust-anchors.xml"/>
-        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-keystore.xml"/>
-        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-tcp-client-server.xml"/>
-        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-ssh-client-server.xml"/>
-        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-tls-client-server.xml"/>
-        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-http-client-server.xml"/>
-        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-netconf-client-server.xml"/>
-        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-restconf-client-server.xml"/>
+        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-crypto-types.xml"/>
+        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-trust-anchors.xml"/>
+        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-keystore.xml"/>
+        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-tcp-client-server.xml"/>
+        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-ssh-client-server.xml"/>
+        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-tls-client-server.xml"/>
+        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-http-client-server.xml"/>
+        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-netconf-client-server.xml"/>
+        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-restconf-client-server.xml"/>
     </references>
 
     <section title="Change Log" removeInRFC="true" anchor="change-log">
@@ -674,8 +726,9 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
             <t>Added missing IANA registration for "ietf-tcp-common"</t>
             <t>Added "mandatory true" for the "username" and "password" leafs</t>
             <t>Added an example of a TCP-client configured to connect via a proxy</t>
-
-            <t>SUBMISSION PENDING!...</t>
+            <t>Fixed issues found by the SecDir review of the "keystore" draft.</t>
+            <t>Updated the "ietf-tcp-client" module to use the new "password-grouping" 
+              grouping from the "crypto-types" module.</t>
           </list>
         </t>
       </section>
