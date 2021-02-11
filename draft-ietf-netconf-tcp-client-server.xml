@@ -126,22 +126,12 @@ Features:
         </section>
 
         <section title="Groupings" toc="exclude">
-          <t>The following diagram lists all the "grouping" statements
-            defined in the "ietf-keystore" module:</t>
-          <t>
-            <figure>
-              <artwork><![CDATA[
-Groupings:
-  +-- tcp-common-grouping
-  +-- tcp-connection-grouping
-]]></artwork>
-            </figure>
-          </t>
-          <aside>
-            <t>The diagram above uses syntax that is similar to but not
-              defined in <xref target="RFC8340"/>.</t>
-          </aside>
-          <t>Each of these groupings are presented in the following subsections.</t>
+          <t>The "ietf-tcp-common" module defines the following "grouping" statements:</t>
+          <ul spacing="compact">
+            <li>tcp-common-grouping</li>
+            <li>tcp-connection-grouping</li>
+          </ul>
+          <t>These groupings are presented in the following subsections.</t>
 
           <section title="The &quot;tcp-common-grouping&quot; Grouping" anchor="tcp-common-grouping">
             <t>The following tree diagram <xref target="RFC8340"/> illustrates the
@@ -292,21 +282,11 @@ Features:
         </section>
 
         <section title="Groupings" toc="exclude">
-          <t>The following diagram lists all the "grouping" statements
-            defined in the "ietf-tcp-client" module:</t>
-          <t>
-            <figure>
-              <artwork><![CDATA[
-Groupings:
-  +-- tcp-client-grouping
-]]></artwork>
-            </figure>
-          </t>
-          <aside>
-            <t>The diagram above uses syntax that is similar to but not
-              defined in <xref target="RFC8340"/>.</t>
-          </aside>
-          <t>Each of these groupings are presented in the following subsections.</t>
+          <t>The "ietf-tcp-client" module defines the following "grouping" statement:</t>
+          <ul spacing="compact">
+            <li>tcp-client-grouping</li>
+          </ul>
+          <t>This grouping is presented in the following subsection.</t>
 
           <section title="The &quot;tcp-client-grouping&quot; Grouping" anchor="tcp-client-grouping">
             <t>The following tree diagram <xref target="RFC8340"/> illustrates the
@@ -411,21 +391,11 @@ Features:
         </section>
 
         <section title="Groupings" toc="exclude">
-          <t>The following diagram lists all the "grouping" statements
-            defined in the "ietf-tcp-server" module:</t>
-          <t>
-            <figure>
-              <artwork><![CDATA[
-Groupings:
-  +-- tcp-server-grouping
-]]></artwork>
-            </figure>
-          </t>
-          <aside>
-            <t>The diagram above uses syntax that is similar to but not
-              defined in <xref target="RFC8340"/>.</t>
-          </aside>
-          <t>Each of these groupings are presented in the following subsections.</t>
+          <t>The "ietf-tcp-server" module defines the following "grouping" statement:</t>
+          <ul spacing="compact">
+            <li>tcp-server-grouping</li>
+          </ul>
+          <t>This grouping is presented in the following subsection.</t>
 
           <section title="The &quot;tcp-server-grouping&quot; Grouping" anchor="tcp-server-grouping">
             <t>The following tree diagram <xref target="RFC8340"/> illustrates the
@@ -597,15 +567,15 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
         <t><figure>
             <artwork>
    URI: urn:ietf:params:xml:ns:yang:ietf-tcp-common
-   Registrant Contact: The NETCONF WG of the IETF.
+   Registrant Contact: The IESG
    XML: N/A, the requested URI is an XML namespace.
 
    URI: urn:ietf:params:xml:ns:yang:ietf-tcp-client
-   Registrant Contact: The NETCONF WG of the IETF.
+   Registrant Contact: The IESG
    XML: N/A, the requested URI is an XML namespace.
 
    URI: urn:ietf:params:xml:ns:yang:ietf-tcp-server
-   Registrant Contact: The NETCONF WG of the IETF.
+   Registrant Contact: The IESG
    XML: N/A, the requested URI is an XML namespace.
 </artwork>
           </figure></t>
@@ -720,7 +690,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           </list>
         </t>
       </section>
-      <section title="08 to 09">
+      <section title="07 to 08">
         <t>
           <list style="symbols">
             <t>Added missing IANA registration for "ietf-tcp-common"</t>
@@ -732,6 +702,22 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           </list>
         </t>
       </section>
+      <section title="08 to 09">
+        <t>
+          <list style="symbols">
+            <t>Addressed comments raised by YANG Doctor in the ct/ts/ks drafts.</t>
+          </list>
+        </t>
+      </section>
+      <!--
+      <section title="09 to 10">
+        <t>
+          <list style="symbols">
+            <t>SUBMISSION PENDING</t>
+          </list>
+        </t>
+      </section>
+      -->
     </section>
 
     <!--
