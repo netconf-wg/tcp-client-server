@@ -32,7 +32,6 @@ extract_grouping() {
 }
 
 extract_grouping ietf-tcp-common tcp-common-grouping
-extract_grouping ietf-tcp-common tcp-connection-grouping
 extract_grouping ietf-tcp-client tcp-client-grouping
 extract_grouping ietf-tcp-server tcp-server-grouping
 

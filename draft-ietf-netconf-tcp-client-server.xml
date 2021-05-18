@@ -41,10 +41,12 @@
     <area>Operations</area>
     <workgroup>NETCONF Working Group</workgroup>
     <abstract>
-      <t>This document defines three YANG 1.1 <xref target="RFC7950"/> modules
-        to support the configuration of TCP clients and TCP servers, either
-        as standalone or in conjunction with a stack protocol layer
-        specific configurations.</t>
+      <t>This document defines three YANG 1.1 modules
+        to support the configuration of TCP clients and TCP servers. The modules
+        include basic parameters of a TCP connection relevant for client or server
+        applications, as well as client configuration required for traversing proxies.
+        The modules can be used either standalone or in conjunction with configuration
+        of other stack protocol layers.</t>
     </abstract>
     <note title="Editorial Note (To be removed by RFC Editor)">
       <t>This draft contains placeholder values that need to be replaced
@@ -53,7 +55,8 @@
         instructions are specified elsewhere in this document.</t>
       <t>Artwork in this document contains shorthand references to drafts in
         progress.  Please apply the following replacements:
-        <list style="symbols">
+      <list style="symbols">
+          <t><spanx style="verb">AAAA</spanx> --&gt; the assigned RFC value for draft-ietf-netconf-crypto-types</t>
           <t><spanx style="verb">DDDD</spanx> --&gt; the assigned RFC value for this draft</t>
         </list>
       </t>
@@ -73,14 +76,22 @@
   <middle>
     <section title="Introduction">
       <t>This document defines three YANG 1.1 <xref target="RFC7950"/> modules
-        to support the configuration of TCP clients and TCP servers, either
-        as standalone or in conjunction with a stack protocol layer
-        specific configurations.</t>
+        to support the configuration of TCP clients and TCP servers (TCP is
+        defined in <xref target="RFC0793"/>), either as standalone or in
+          conjunction with configuration of other stack protocol layers.</t>
+
+      <t>The modules focus on three different types of base TCP parameters that matter
+        for TCP-based applications: First, the modules cover fundamental configuration of a
+        TCP client or TCP server application, such as addresses and port numbers. Second, a
+        reusable grouping enables modification of application-specific parameters for a TCP
+        connections, such as use of TCP keep-alives. And third, client configuration for
+        traversing proxies is included as well. In each case, the modules have a very narrow
+        scope and focus on a minimum set of required parameters.</t>
 
 INSERT_TEXT_FROM_FILE(../common-intro-snippet.xml,150)
 
       <section title="Adherence to the NMDA">
-        <t>This document in compliant with the Network Management Datastore
+        <t>This document is compliant with the Network Management Datastore
           Architecture (NMDA) <xref target="RFC8342"/>. It does not define
           any protocol accessible nodes that are "config false".</t>
       </section>
@@ -89,9 +100,9 @@ INSERT_TEXT_FROM_FILE(../common-intro-snippet.xml,150)
 
     <section anchor="tcp-common-model" title="The &quot;ietf-tcp-common&quot; Module">
 
-      <t>This section defines a YANG 1.1 <xref target="RFC7950"/> module called
+      <t>This section defines a YANG 1.1 module called
         "ietf-tcp-common".  A high-level overview of the module is provided in
-        <xref target="common-overview"/>. Examples illustatrating the module's use
+        <xref target="common-overview"/>. Examples illustrating the module's use
         are provided in <xref target="common-examples">Examples</xref>. The YANG
         module itself is defined in <xref target="common-yang-module"/>.</t>
 
@@ -104,7 +115,7 @@ INSERT_TEXT_FROM_FILE(../common-intro-snippet.xml,150)
           <t>This document defines a common "grouping" statement for basic TCP connection
             parameters that matter to applications. In some TCP stacks, such parameters
             can also directly be set by an application using system calls, such as the
-            socket API. The base YANG model in this document focuses on modeling TCP
+            sockets API. The base YANG model in this document focuses on modeling TCP
             keep-alives. This base model can be extended as needed.</t>
         </section>
 
@@ -126,12 +137,11 @@ Features:
         </section>
 
         <section title="Groupings" toc="exclude">
-          <t>The "ietf-tcp-common" module defines the following "grouping" statements:</t>
+          <t>The "ietf-tcp-common" module defines the following "grouping" statement:</t>
           <ul spacing="compact">
             <li>tcp-common-grouping</li>
-            <li>tcp-connection-grouping</li>
           </ul>
-          <t>These groupings are presented in the following subsections.</t>
+          <t>This grouping is presented in the following subsection.</t>
 
           <section title="The &quot;tcp-common-grouping&quot; Grouping" anchor="tcp-common-grouping">
             <t>The following tree diagram <xref target="RFC8340"/> illustrates the
@@ -145,40 +155,24 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-common-grouping.no-expand.txt)
             </t>
             <t>Comments:</t>
             <ul>
-              <li>The "keepalives" node is a "presence" node so that the decendent nodes'
-                "mandatory true" doesn't imply that keepalives must be configured.</li>
+              <li>The "keepalives" node is a "presence" node so that the mandatory descendent nodes
+                 do not imply that keepalives must be configured.</li>
               <li>The "idle-time", "max-probes", and "probe-interval" nodes have the
                 common meanings.  Please see the YANG module in <xref target="common-yang-module"/>
                 for details.</li>
             </ul>
           </section>
-    
-          <section title="The &quot;tcp-connection-grouping&quot; Grouping" anchor="tcp-connection-grouping">
-            <t>The following tree diagram <xref target="RFC8340"/> illustrates the
-              "tcp-connection-grouping" grouping:</t>
-            <t>
-              <figure>
-               <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/tree-tcp-connection-grouping.no-expand.txt)
-]]></artwork>
-              </figure>
-            </t>
-            <t>Comments:</t>
-            <ul>
-              <li>This grouping uses the "tcp-common-grouping" grouping discussed in
-                <xref target="tcp-common-grouping"/>.</li>
-            </ul>
-          </section>
         </section>
 
         <section title="Protocol-accessible Nodes" toc="exclude">
-          <t>The "ietf-tcp-common" module does not contain any protocol-accessible nodes.</t>
+          <t>The "ietf-tcp-common" module defines only "grouping" statements that are used by
+            other modules to instantiate protocol-accessible nodes.</t>
         </section>
 
         <section title="Guidelines for Configuring TCP Keep-Alives" toc="exclude">
           <t>Network stacks may include "keep-alives" in their TCP implementations,
             although this practice is not universally accepted. If keep-alives are
-            included, [RFC1122] [RFC793bis] mandates that the application MUST be
+            included, <xref target="RFC1122"/> mandates that the application MUST be
             able to turn them on or off for each TCP connection, and that they MUST
             default to off.</t>
           <t>Keep-alive mechanisms exist in many protocols. Depending on the protocol
@@ -189,7 +183,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-connection-grouping.no-expand.txt)
             to the application.</t>
           <t>A TCP keep-alive mechanism SHOULD only be invoked in server applications
             that might otherwise hang indefinitely and consume resources unnecessarily
-            if a client crashes or aborts a connection during a network failure [RFC1122].
+            if a client crashes or aborts a connection during a network failure <xref target="RFC1122"/>.
             TCP keep-alives may consume significant resources both in the network and
             in endpoints (e.g., battery power).  In addition, frequent keep-alives
             risk network congestion. The higher the frequency of keep-alives, the
@@ -198,7 +192,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-connection-grouping.no-expand.txt)
             Given the cost of keep-alives, parameters have to be configured carefully:
             <list style="symbols">
               <t>The default idle interval (leaf "idle-time") MUST default to no less
-                than two hours, i.e., 7200 seconds [RFC1122]. A lower value MAY be
+                than two hours, i.e., 7200 seconds <xref target="RFC1122"/>. A lower value MAY be
                 configured, but keep-alive messages SHOULD NOT be transmitted more
                 frequently than once every 15 seconds. Longer intervals SHOULD be
                 used when possible.</t>
@@ -207,7 +201,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-connection-grouping.no-expand.txt)
                 packet loss. ACK segments that contain no data are not reliably
                 transmitted by TCP. Consequently, if a keep-alive mechanism is
                 implemented it MUST NOT interpret failure to respond to any
-                specific probe as a dead connection [RFC1122]. Typically a
+                specific probe as a dead connection <xref target="RFC1122"/>. Typically a
                 single-digit number should suffice.</t>
               <t>TCP implementations may include a parameter for the number of
                 seconds between TCP keep-alive probes (leaf "probe-interval"). In
@@ -249,9 +243,9 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-common@YYYY-MM-DD.yang)
 
     <section anchor="tcp-client-model" title="The &quot;ietf-tcp-client&quot; Module">
 
-      <t>This section defines a YANG 1.1 <xref target="RFC7950"/> module called
+      <t>This section defines a YANG 1.1 module called
         "ietf-tcp-client".  A high-level overview of the module is provided in
-        <xref target="client-overview"/>. Examples illustatrating the module's use
+        <xref target="client-overview"/>. Examples illustrating the module's use
         are provided in <xref target="client-examples">Examples</xref>. The YANG
         module itself is defined in <xref target="client-yang-module"/>.</t>
 
@@ -313,17 +307,18 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-client-grouping.no-expand.txt)
                 value is '0', indicating that the operating system can pick an
                 arbitrary port number.</li>
               <li>The "proxy-server" node is enabled by a "feature" statement and, for
-                servers that enable it, is a "presence" container so that the decendent
-                "mandatory true" choice node doesn't imply that the proxt-server node
+                servers that enable it, is a "presence" container so that the descendent
+                "mandatory true" choice node doesn't imply that the proxy-server node
                 must be configured.</li>
-              <li>This grouping uses the "tcp-connection-grouping" grouping discussed in
-                <xref target="tcp-connection-grouping"/>.</li>
+              <li>This grouping uses the "tcp-common-grouping" grouping discussed in
+                <xref target="tcp-common-grouping"/>.</li>
             </ul>
           </section>
         </section>
 
         <section title="Protocol-accessible Nodes" toc="exclude">
-          <t>The "ietf-tcp-client" module does not contain any protocol-accessible nodes.</t>
+          <t>The "ietf-tcp-client" module defines only "grouping" statements that are used by
+            other modules to instantiate protocol-accessible nodes.</t>
         </section>
       </section>
 
@@ -362,9 +357,9 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-client@YYYY-MM-DD.yang)
 
     <section anchor="tcp-server-model" title="The &quot;ietf-tcp-server&quot; Module">
 
-      <t>This section defines a YANG 1.1 <xref target="RFC7950"/> module called
+      <t>This section defines a YANG 1.1 module called
         "ietf-tcp-server".  A high-level overview of the module is provided in
-        <xref target="server-overview"/>. Examples illustatrating the module's use
+        <xref target="server-overview"/>. Examples illustrating the module's use
         are provided in <xref target="server-examples">Examples</xref>. The YANG
         module itself is defined in <xref target="server-yang-module"/>.</t>
 
@@ -414,14 +409,15 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-server-grouping.no-expand.txt)
               <li>The "local-port" node is not mandatory, but its default value is 
                 the invalid value '0', thus forcing the consuming data model to
                 refine it in order to provide it an appropriate default value.</li>
-              <li>This grouping uses the "tcp-connection-grouping" grouping discussed in
-                <xref target="tcp-connection-grouping"/>.</li>
+              <li>This grouping uses the "tcp-common-grouping" grouping discussed in
+                <xref target="tcp-common-grouping"/>.</li>
             </ul>
           </section>
         </section>
 
         <section title="Protocol-accessible Nodes" toc="exclude">
-          <t>The "ietf-tcp-server" module does not contain any protocol-accessible nodes.</t>
+          <t>The "ietf-tcp-server" module defines only "grouping" statements that are used by
+            other modules to instantiate protocol-accessible nodes.</t>
         </section>
       </section>
 
@@ -452,7 +448,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
 
     <section title="Security Considerations">
 
-      <section title="The &quot;ietf-tcp-common&quot; YANG Module">
+      <section title='The "ietf-tcp-common" YANG Module'>
         <t>The "ietf-tcp-common" YANG module defines "grouping" statements
           that are designed to be accessed via YANG based management
           protocols, such as NETCONF <xref target="RFC6241"/> and RESTCONF
@@ -483,7 +479,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           and thus the security consideration for such is not provided here.</t>
       </section>
 
-      <section title="The &quot;ietf-tcp-client&quot; YANG Module">
+      <section title='The "ietf-tcp-client" YANG Module'>
         <t>The "ietf-tcp-client" YANG module defines "grouping" statements
           that are designed to be accessed via YANG based management
           protocols, such as NETCONF <xref target="RFC6241"/> and RESTCONF
@@ -524,9 +520,13 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
         <t>This module does not define any RPCs, actions, or notifications,
           and thus the security consideration for such is not provided here.</t>
 
+        <t>Implementations are RECOMMENDED to implement the "local-binding-supported"
+          feature for cryptographically-secure protocols, so as to enable more
+          granular ingress/egress firewall rulebases.  It is NOT RECOMMENDED to
+          implement this feature for unsecure protocols, as per <xref target="RFC6056"/>.</t>
       </section>
 
-      <section title="The &quot;ietf-tcp-server&quot; YANG Module">
+      <section title='The "ietf-tcp-server" YANG Module'>
         <t>The "ietf-tcp-server" YANG module defines "grouping" statements
           that are designed to be accessed via YANG based management
           protocols, such as NETCONF <xref target="RFC6241"/> and RESTCONF
@@ -618,20 +618,23 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
     </references>
 
     <references title="Informative References">
+      <?rfc include="reference.RFC.0793.xml"?>
+      <?rfc include="reference.RFC.1122.xml"?>
       <?rfc include="reference.RFC.3688.xml"?>
+      <?rfc include="reference.RFC.6056.xml"?>
       <?rfc include="reference.RFC.6241.xml"?>
       <?rfc include="reference.RFC.8040.xml"?>
       <?rfc include="reference.RFC.8340.xml"?>
       <?rfc include="reference.RFC.8342.xml"?>
-        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-crypto-types.xml"/>
-        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-trust-anchors.xml"/>
-        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-keystore.xml"/>
-        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-tcp-client-server.xml"/>
-        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-ssh-client-server.xml"/>
-        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-tls-client-server.xml"/>
-        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-http-client-server.xml"/>
-        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-netconf-client-server.xml"/>
-        <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-restconf-client-server.xml"/>
+      <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-crypto-types.xml"/>
+      <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-trust-anchors.xml"/>
+      <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-keystore.xml"/>
+      <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-tcp-client-server.xml"/>
+      <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-ssh-client-server.xml"/>
+      <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-tls-client-server.xml"/>
+      <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-http-client-server.xml"/>
+      <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-netconf-client-server.xml"/>
+      <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-restconf-client-server.xml"/>
     </references>
 
     <section title="Change Log" removeInRFC="true" anchor="change-log">
@@ -709,8 +712,22 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           </list>
         </t>
       </section>
-      <!--
       <section title="09 to 10">
+        <t>
+          <list style="symbols">
+            <t>Updated Abstract and Intro to address comments by Tom Petch.</t>
+            <t>Removed the "tcp-connection-grouping" grouping (now models use the "tcp-common-grouping" directly).</t>
+            <t>Added XML-comment above examples explaining the reason for the unusual top-most element's presence.</t>
+            <t>Added Securty Considerations section for the "local-binding-supported" feature.</t>
+            <t>Replaced some hardcoded refs to &lt;xref&gt; elements.</t>
+            <t>Fixed nits found by YANG Doctor reviews.</t>
+            <t>Aligned modules with `pyang -f` formatting.</t>
+            <t>Added an "Acknowledgements" secetion.</t>
+          </list>
+        </t>
+      </section>
+      <!--
+      <section title="10 to 11">
         <t>
           <list style="symbols">
             <t>SUBMISSION PENDING</t>
@@ -720,14 +737,15 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
       -->
     </section>
 
-    <!--
     <section title="Acknowledgements" numbered="no">
       <t>The authors would like to thank for following for lively discussions
-        on list and in the halls (ordered by last name):
-          TBD
+        on list and in the halls (ordered by first name):
+        Juergen Schoenwaelder,
+        Ladislav Lhotka,
+        Nick Hancock,
+        and Tom Petch.
       </t>
     </section>
--->
 
   </back>
 </rfc>

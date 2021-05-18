@@ -1,3 +1,5 @@
+<!-- The outermost element below doesn't exist in the data model. -->
+<!--  It simulates if the "grouping" were a "container" instead.  -->
 <tcp-client xmlns="urn:ietf:params:xml:ns:yang:ietf-tcp-client">
   <remote-address>www.example.com</remote-address>
   <remote-port>443</remote-port>

@@ -1,3 +1,5 @@
+<!-- The outermost element below doesn't exist in the data model. -->
+<!--  It simulates if the "grouping" were a "container" instead.  -->
 <tcp-server xmlns="urn:ietf:params:xml:ns:yang:ietf-tcp-server">
   <local-address>10.20.30.40</local-address>
   <local-port>7777</local-port>
