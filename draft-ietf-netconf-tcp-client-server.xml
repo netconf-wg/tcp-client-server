@@ -308,7 +308,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-client-grouping.no-expand.txt)
                 arbitrary port number.</li>
               <li>The "proxy-server" node is enabled by a "feature" statement and, for
                 servers that enable it, is a "presence" container so that the descendent
-                "mandatory true" choice node doesn't imply that the proxy-server node
+                "mandatory true" choice node does not imply that the proxy-server node
                 must be configured.</li>
               <li>This grouping uses the "tcp-common-grouping" grouping discussed in
                 <xref target="tcp-common-grouping"/>.</li>
