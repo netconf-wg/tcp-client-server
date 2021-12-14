@@ -96,6 +96,14 @@ INSERT_TEXT_FROM_FILE(../common-intro-snippet.xml,150)
           any protocol accessible nodes that are "config false".</t>
       </section>
 
+        <section title="Conventions">
+          <t>Various examples used in this document use a placeholder
+            value for binary data that has been base64 encoded (e.g.,
+            "BASE64VALUE=").  This placeholder value is used as real
+            base64 encoded structures are often many lines long and
+            hence distracting to the example being presented.</t>
+        </section>
+
     </section>
 
     <section anchor="tcp-common-model" title="The &quot;ietf-tcp-common&quot; Module">
@@ -155,7 +163,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-common-grouping.no-expand.txt)
             </t>
             <t>Comments:</t>
             <ul>
-              <li>The "keepalives" node is a "presence" node so that the mandatory descendent nodes
+              <li>The "keepalives" node is a "presence" node so that the mandatory descendant nodes
                  do not imply that keepalives must be configured.</li>
               <li>The "idle-time", "max-probes", and "probe-interval" nodes have the
                 common meanings.  Please see the YANG module in <xref target="common-yang-module"/>
@@ -201,8 +209,8 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-common-grouping.no-expand.txt)
                 packet loss. ACK segments that contain no data are not reliably
                 transmitted by TCP. Consequently, if a keep-alive mechanism is
                 implemented it MUST NOT interpret failure to respond to any
-                specific probe as a dead connection <xref target="RFC1122"/>. Typically a
-                single-digit number should suffice.</t>
+                specific probe as a dead connection <xref target="RFC1122"/>. 
+                Typically, a single-digit number should suffice.</t>
               <t>TCP implementations may include a parameter for the number of
                 seconds between TCP keep-alive probes (leaf "probe-interval"). In
                 order to avoid congestion, the time interval between probes MUST NOT
@@ -307,7 +315,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-client-grouping.no-expand.txt)
                 value is '0', indicating that the operating system can pick an
                 arbitrary port number.</li>
               <li>The "proxy-server" node is enabled by a "feature" statement and, for
-                servers that enable it, is a "presence" container so that the descendent
+                servers that enable it, is a "presence" container so that the descendant
                 "mandatory true" choice node does not imply that the proxy-server node
                 must be configured.</li>
               <li>This grouping uses the "tcp-common-grouping" grouping discussed in
@@ -726,8 +734,18 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           </list>
         </t>
       </section>
-      <!--
       <section title="10 to 11">
+        <t>
+          <list style="symbols">
+            <t>Replaced "base64encodedvalue==" with "BASE64VALUE=" in examples.</t>
+            <t>Minor editorial nits</t>
+
+            <t>SUBMISSION PENDING</t>
+          </list>
+        </t>
+      </section>
+      <!--
+      <section title="11 to 12">
         <t>
           <list style="symbols">
             <t>SUBMISSION PENDING</t>
