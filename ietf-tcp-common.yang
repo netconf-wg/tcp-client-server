@@ -8,10 +8,10 @@ module ietf-tcp-common {
      IETF TCP Maintenance and Minor Extensions (TCPM) Working Group";
 
   contact
-    "WG Web:   <http://datatracker.ietf.org/wg/netconf/>
-               <http://datatracker.ietf.org/wg/tcpm/>
-     WG List:  <mailto:netconf@ietf.org>
-               <mailto:tcpm@ietf.org>
+    "WG Web:   https://datatracker.ietf.org/wg/netconf
+               https://datatracker.ietf.org/wg/tcpm
+     WG List:  NETCONF WG list <mailto:netconf@ietf.org>
+               TCPM WG list <mailto:tcpm@ietf.org>
      Authors:  Kent Watsen <mailto:kent+ietf@watsen.net>
                Michael Scharf
                <mailto:michael.scharf@hs-esslingen.de>";
