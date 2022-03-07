@@ -747,7 +747,6 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           <list style="symbols">
             <t>Fixed up the 'WG Web' and 'WG List' lines in YANG module(s)</t>
             <t>Fixed up copyright (i.e., s/Simplified/Revised/) in YANG module(s)</t>
-            <t>SUBMISSION PENDING</t>
           </list>
         </t>
       </section>
