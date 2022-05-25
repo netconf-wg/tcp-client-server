@@ -750,6 +750,13 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           </list>
         </t>
       </section>
+      <section title="12 to 13">
+        <t>
+          <list style="symbols">
+            <t>NO UPDATE.</t>
+          </list>
+        </t>
+      </section>
       <!--
       <section title="11 to 12">
         <t>
