@@ -66,6 +66,14 @@
           <t><spanx style="verb">YYYY-MM-DD</spanx> --&gt; the publication date of this draft</t>
         </list>
       </t>
+      <t>The "Relation to other RFCs" section <xref target="collective-effort"/> contains
+        the text "one or more YANG modules" and, later, "modules".  This text is sourced
+        from a file in a context where it is unknown how many modules a draft defines.
+        The text is not wrong as is, but it may be improved by stating more directly how
+        many modules are defined.</t>
+      <t>The "Relation to other RFCs" section <xref target="collective-effort"/> contains
+        a self-reference to this draft, along with a corresponding Informative Reference in
+        the Appendix.</t>
       <t>The following Appendix section is to be removed prior to publication:
         <list style="symbols">
           <t><xref target="change-log"/>.  Change Log</t>
@@ -77,7 +85,7 @@
     <section title="Introduction">
       <t>This document defines three YANG 1.1 <xref target="RFC7950"/> modules
         to support the configuration of TCP clients and TCP servers (TCP is
-        defined in <xref target="RFC0793"/>), either as standalone or in
+        defined in <xref target="RFC9293"/>), either as standalone or in
           conjunction with configuration of other stack protocol layers.</t>
 
       <t>The modules focus on three different types of base TCP parameters that matter
@@ -95,14 +103,6 @@ INSERT_TEXT_FROM_FILE(../common-intro-snippet.xml,150)
           Architecture (NMDA) <xref target="RFC8342"/>. It does not define
           any protocol accessible nodes that are "config false".</t>
       </section>
-
-        <section title="Conventions">
-          <t>Various examples used in this document use a placeholder
-            value for binary data that has been base64 encoded (e.g.,
-            "BASE64VALUE=").  This placeholder value is used as real
-            base64 encoded structures are often many lines long and
-            hence distracting to the example being presented.</t>
-        </section>
 
     </section>
 
@@ -352,7 +352,8 @@ INSERT_TEXT_FROM_FILE(refs/ex-tcp-client-proxy.xml)
       </section>
 
       <section anchor="client-yang-module" title="YANG Module">
-        <t>The ietf-tcp-client YANG module references <xref target="RFC6991"/>.</t>
+        <t>The ietf-tcp-client YANG module references <xref target="RFC1928"/>, 
+        <xref target="RFC1929"/>, <xref target="RFC2743"/>, and <xref target="RFC6991"/>.</t>
         <t><figure>
             <preamble>&lt;CODE BEGINS&gt; file "ietf-tcp-client@YYYY-MM-DD.yang"</preamble>
             <artwork><![CDATA[
@@ -464,7 +465,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           mandatory-to-implement secure transport layers (e.g., SSH, TLS)
           with mutual authentication.</t>
 
-        <t>The NETCONF access control model (NACM) <xref target="RFC8341"/>
+        <t>The Network Access Control Model (NACM) <xref target="RFC8341"/>
           provides the means to restrict access for particular users to a
           pre-configured subset of all available protocol operations and
           content.</t>
@@ -495,7 +496,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           mandatory-to-implement secure transport layers (e.g., SSH, TLS)
           with mutual authentication.</t>
 
-        <t>The NETCONF access control model (NACM) <xref target="RFC8341"/>
+        <t>The Network Access Control Model (NACM) <xref target="RFC8341"/>
           provides the means to restrict access for particular users to a
           pre-configured subset of all available protocol operations and
           content.</t>
@@ -542,7 +543,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           mandatory-to-implement secure transport layers (e.g., SSH, TLS)
           with mutual authentication.</t>
 
-        <t>The NETCONF access control model (NACM) <xref target="RFC8341"/>
+        <t>The Network Access Control Model (NACM) <xref target="RFC8341"/>
           provides the means to restrict access for particular users to a
           pre-configured subset of all available protocol operations and
           content.</t>
@@ -568,7 +569,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
 
     <section title="IANA Considerations">
       <section title='The "IETF XML" Registry'>
-        <t>This document registers two URIs in the "ns" subregistry of the
+        <t>This document registers three URIs in the "ns" subregistry of the
         IETF XML Registry <xref target="RFC3688"/>. Following the format in
         <xref target="RFC3688"/>, the following registrations are
         requested:</t>
@@ -590,7 +591,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
       </section>
 
       <section title='The "YANG Module Names" Registry'>
-        <t>This document registers two YANG modules in the YANG Module Names
+        <t>This document registers three YANG modules in the YANG Module Names
         registry <xref target="RFC6020"/>. Following the format in <xref
         target="RFC6020"/>, the following registrations are requested:</t>
         <t><figure>
@@ -626,14 +627,17 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
     </references>
 
     <references title="Informative References">
-      <?rfc include="reference.RFC.0793.xml"?>
       <?rfc include="reference.RFC.1122.xml"?>
+      <?rfc include="reference.RFC.1928.xml"?>
+      <?rfc include="reference.RFC.1929.xml"?>
+      <?rfc include="reference.RFC.2743.xml"?>
       <?rfc include="reference.RFC.3688.xml"?>
       <?rfc include="reference.RFC.6056.xml"?>
       <?rfc include="reference.RFC.6241.xml"?>
       <?rfc include="reference.RFC.8040.xml"?>
       <?rfc include="reference.RFC.8340.xml"?>
       <?rfc include="reference.RFC.8342.xml"?>
+      <?rfc include="reference.RFC.9293.xml"?>
       <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-crypto-types.xml"/>
       <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-trust-anchors.xml"/>
       <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-keystore.xml"/>
@@ -757,15 +761,13 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           </list>
         </t>
       </section>
-      <!--
-      <section title="11 to 12">
+      <section title="13 to 14">
         <t>
           <list style="symbols">
-            <t>SUBMISSION PENDING</t>
+            <t>Updated per Shepherd reviews.</t>
           </list>
         </t>
       </section>
-      -->
     </section>
 
     <section title="Acknowledgements" numbered="no">
@@ -774,6 +776,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
         Juergen Schoenwaelder,
         Ladislav Lhotka,
         Nick Hancock,
+        Per Andersson,
         and Tom Petch.
       </t>
     </section>

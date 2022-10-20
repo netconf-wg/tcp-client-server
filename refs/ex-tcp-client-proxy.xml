@@ -8,7 +8,7 @@
   <local-port>0</local-port>
   <proxy-server>
     <socks5-parameters>
-      <remote-address>proxy.my-domain.com</remote-address>
+      <remote-address>proxy.example.com</remote-address>
       <remote-port>1080</remote-port>
       <authentication-parameters>
         <username-password>
