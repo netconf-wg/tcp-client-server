@@ -138,10 +138,10 @@ Features:
 ]]></artwork>
             </figure>
           </t>
-          <aside>
+          <!--<aside>-->
             <t>The diagram above uses syntax that is similar to but not
               defined in <xref target="RFC8340"/>.</t>
-          </aside>
+          <!--</aside>-->
         </section>
 
         <section title="Groupings" toc="exclude">
@@ -277,10 +277,10 @@ Features:
 ]]></artwork>
             </figure>
           </t>
-          <aside>
+          <!--<aside>-->
             <t>The diagram above uses syntax that is similar to but not
               defined in <xref target="RFC8340"/>.</t>
-          </aside>
+          <!--</aside>-->
         </section>
 
         <section title="Groupings" toc="exclude">
@@ -388,10 +388,10 @@ Features:
 ]]></artwork>
             </figure>
           </t>
-          <aside>
+          <!--<aside>-->
             <t>The diagram above uses syntax that is similar to but not
               defined in <xref target="RFC8340"/>.</t>
-          </aside>
+          <!--</aside>-->
         </section>
 
         <section title="Groupings" toc="exclude">
@@ -764,7 +764,14 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
       <section title="13 to 14">
         <t>
           <list style="symbols">
-            <t>Updated per Shepherd reviews.</t>
+            <t>Updated per Shepherd reviews impacting the suite of drafts.</t>
+          </list>
+        </t>
+      </section>
+      <section title="14 to 15">
+        <t>
+          <list style="symbols">
+            <t>Updated per Shepherd reviews impacting the suite of drafts.</t>
           </list>
         </t>
       </section>
