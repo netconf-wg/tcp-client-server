@@ -60,7 +60,8 @@ rm $name
 printf "Testing ex-tcp-client-proxy.xml..."
 name=`ls -1 ../ietf-tcp-client\@*.yang | sed 's/\.\.\///'`
 sed 's/^}/container tcp-client { uses tcp-client-grouping; }}/' ../ietf-tcp-client\@*.yang > $name
-command="yanglint ../ietf-tcp-common@*.yang $name -p ../ ex-tcp-client-proxy.xml"
+#command="yanglint ../ietf-tcp-common@*.yang $name -p ../ ex-tcp-client-proxy.xml"
+command="yanglint ../ietf-crypto-types@*.yang ../ietf-tcp-common@*.yang ../ietf-tcp-client@*.yang $name ex-tcp-client-proxy.xml"
 run_unix_cmd $LINENO "$command" 0
 printf "okay.\n"
 rm $name

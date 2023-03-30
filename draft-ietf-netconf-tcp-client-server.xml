@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
 
 <?rfc toc="yes"?>
 <?rfc symrefs="yes"?>
@@ -18,6 +17,7 @@
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude"
      category="std"
      consensus="true"
+     submissionType="IETF"
      docName="draft-ietf-netconf-tcp-client-server-latest"
      ipr="trust200902">
   <front>
@@ -238,7 +238,8 @@ INSERT_TEXT_FROM_FILE(refs/ex-tcp-common.xml)
       </section>
 
       <section anchor="common-yang-module" title="YANG Module">
-        <t>The ietf-tcp-common YANG module references <xref target="RFC6991"/>.</t>
+        <t>The ietf-tcp-common YANG module references <xref target="RFC6991"/>
+            and <xref target="RFC9293"/>.</t>
         <t><figure>
             <preamble>&lt;CODE BEGINS&gt; file "ietf-tcp-common@YYYY-MM-DD.yang"</preamble>
             <artwork><![CDATA[
@@ -352,8 +353,9 @@ INSERT_TEXT_FROM_FILE(refs/ex-tcp-client-proxy.xml)
       </section>
 
       <section anchor="client-yang-module" title="YANG Module">
-        <t>The ietf-tcp-client YANG module references <xref target="RFC1928"/>, 
-        <xref target="RFC1929"/>, <xref target="RFC2743"/>, and <xref target="RFC6991"/>.</t>
+        <t>The ietf-tcp-client YANG module references <xref target="SOCKS 4A"/>, <xref target="RFC1928"/>, 
+        <xref target="RFC1929"/>, <xref target="RFC2743"/>, <xref target="RFC6991"/>,
+        <xref target="RFC9293"/>, and <xref target="I-D.ietf-netconf-crypto-types"/>.</t>
         <t><figure>
             <preamble>&lt;CODE BEGINS&gt; file "ietf-tcp-client@YYYY-MM-DD.yang"</preamble>
             <artwork><![CDATA[
@@ -442,7 +444,8 @@ INSERT_TEXT_FROM_FILE(refs/ex-tcp-server.xml)
       </section>
 
       <section anchor="server-yang-module" title="YANG Module">
-        <t>The ietf-tcp-server YANG module references <xref target="RFC6991"/>.</t>
+        <t>The ietf-tcp-server YANG module references <xref target="RFC6991"/>
+           and <xref target="RFC9293"/>.</t>
         <t>
           <figure>
             <preamble>&lt;CODE BEGINS&gt; file "ietf-tcp-server@YYYY-MM-DD.yang"</preamble>
@@ -624,6 +627,8 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
       <?rfc include="reference.RFC.7950.xml"?>
       <?rfc include="reference.RFC.8174.xml"?>
       <?rfc include="reference.RFC.8341.xml"?>
+      <?rfc include="reference.RFC.9293.xml"?>
+      <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-crypto-types.xml"/>
     </references>
 
     <references title="Informative References">
@@ -637,8 +642,6 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
       <?rfc include="reference.RFC.8040.xml"?>
       <?rfc include="reference.RFC.8340.xml"?>
       <?rfc include="reference.RFC.8342.xml"?>
-      <?rfc include="reference.RFC.9293.xml"?>
-      <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-crypto-types.xml"/>
       <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-trust-anchors.xml"/>
       <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-keystore.xml"/>
       <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-tcp-client-server.xml"/>
@@ -647,6 +650,12 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
       <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-http-client-server.xml"/>
       <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-netconf-client-server.xml"/>
       <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-restconf-client-server.xml"/>
+      <reference anchor="SOCKS 4A" target="https://www.openssh.com/txt/socks4a.protocol">
+        <front>
+          <title>SOCKS 4A: A Simple Extension to SOCKS 4 Protocol</title>
+          <author fullname="The OpenSSH Project"/>
+        </front>
+      </reference>
     </references>
 
     <section title="Change Log" removeInRFC="true" anchor="change-log">
@@ -772,6 +781,15 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
         <t>
           <list style="symbols">
             <t>Updated per Shepherd reviews impacting the suite of drafts.</t>
+          </list>
+        </t>
+      </section>
+      <section title="15 to 16">
+        <t>
+          <list style="symbols">
+            <t>Updated per Tom Petch review.</t>
+            <t>Added refs to RFC9293 and SOCKS 4A</t>
+            <t>Fixed examples to use IETF-sanctioned values for examples.</t>
           </list>
         </t>
       </section>
