@@ -788,7 +788,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
         <t>
           <list style="symbols">
             <t>Updated per Tom Petch review.</t>
-            <t>Added refs to RFC9293 and SOCKS 4A</t>
+            <t>Added refs to RFC9293 and SOCKS 4A.</t>
             <t>Fixed examples to use IETF-sanctioned values for examples.</t>
           </list>
         </t>
