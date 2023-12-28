@@ -3,8 +3,8 @@
 
 <tcp-common xmlns="urn:ietf:params:xml:ns:yang:ietf-tcp-common">
   <keepalives>
-    <idle-time>15</idle-time>
-    <max-probes>3</max-probes>
-    <probe-interval>30</probe-interval>
+    <idle-time>7200</idle-time>
+    <max-probes>9</max-probes>
+    <probe-interval>75</probe-interval>
   </keepalives>
 </tcp-common>

@@ -72,8 +72,15 @@
         The text is not wrong as is, but it may be improved by stating more directly how
         many modules are defined.</t>
       <t>The "Relation to other RFCs" section <xref target="collective-effort"/> contains
-        a self-reference to this draft, along with a corresponding Informative Reference in
-        the Appendix.</t>
+          a self-reference to this draft, along with a corresponding reference in
+          the Appendix.  Please replace the self-reference in this section with "This RFC"
+          (or similar) and remove the self-reference in the "Normative/Informative References"
+          section, whichever it is in.</t>
+        <t>Tree-diagrams in this draft may use the '/' line-folding mode defined in RFC 8792.
+          However, nicer-to-the-eye is when the '//' line-folding mode is used.  The AD suggested
+          suggested putting a request here for the RFC Editor to help convert "ugly" '/' folded
+          examples to use the '//' folding mode.  "Help convert" may be interpreted as, identify
+          what looks ugly and ask the authors to make the adjustment.</t>
       <t>The following Appendix section is to be removed prior to publication:
         <list style="symbols">
           <t><xref target="change-log"/>.  Change Log</t>
@@ -121,10 +128,11 @@ INSERT_TEXT_FROM_FILE(../common-intro-snippet.xml,150)
 
         <section title="Model Scope" toc="exclude">
           <t>This document defines a common "grouping" statement for basic TCP connection
-            parameters that matter to applications. In some TCP stacks, such parameters
-            can also directly be set by an application using system calls, such as the
-            sockets API. The base YANG model in this document focuses on modeling TCP
-            keep-alives. This base model can be extended as needed.</t>
+            parameters that matter to applications. It is "common" in that this grouping
+            is used by both the "ietf-tcp-client" and "ietf-tcp-server" modules.  In some
+            TCP stacks, such parameters can also directly be set by an application using
+            system calls, such as the sockets API. The base YANG model in this document
+            focuses on modeling TCP keep-alives. This base model can be extended as needed.</t>
         </section>
 
         <section title="Features" anchor="common-features" toc="exclude">
@@ -163,7 +171,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-common-grouping.no-expand.txt)
             </t>
             <t>Comments:</t>
             <ul>
-              <li>The "keepalives" node is a "presence" node so that the mandatory descendant nodes
+              <li>The "keepalives" node is a "presence" container so that the mandatory descendant nodes
                  do not imply that keepalives must be configured.</li>
               <li>The "idle-time", "max-probes", and "probe-interval" nodes have the
                 common meanings.  Please see the YANG module in <xref target="common-yang-module"/>
@@ -174,7 +182,8 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-common-grouping.no-expand.txt)
 
         <section title="Protocol-accessible Nodes" toc="exclude">
           <t>The "ietf-tcp-common" module defines only "grouping" statements that are used by
-            other modules to instantiate protocol-accessible nodes.</t>
+            other modules to instantiate protocol-accessible nodes.  Thus this module, when
+            implemented, does not itself define any protocol-accessible nodes.</t>
         </section>
 
         <section title="Guidelines for Configuring TCP Keep-Alives" toc="exclude">
@@ -187,7 +196,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-common-grouping.no-expand.txt)
             stack, TCP keep-alives may only be one out of several alternatives.  Which
             mechanism(s) to use depends on the use case and application requirements. If
             keep-alives are needed by an application, it is RECOMMENDED that the
-            aliveness check happens only at the protocol layers that are meaningful
+            liveness check happens only at the protocol layers that are meaningful
             to the application.</t>
           <t>A TCP keep-alive mechanism SHOULD only be invoked in server applications
             that might otherwise hang indefinitely and consume resources unnecessarily
@@ -327,7 +336,8 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-client-grouping.no-expand.txt)
 
         <section title="Protocol-accessible Nodes" toc="exclude">
           <t>The "ietf-tcp-client" module defines only "grouping" statements that are used by
-            other modules to instantiate protocol-accessible nodes.</t>
+          other modules to instantiate protocol-accessible nodes.  Thus this module, when
+          implemented, does not itself define any protocol-accessible nodes.</t>
         </section>
       </section>
 
@@ -428,7 +438,8 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-server-grouping.no-expand.txt)
 
         <section title="Protocol-accessible Nodes" toc="exclude">
           <t>The "ietf-tcp-server" module defines only "grouping" statements that are used by
-            other modules to instantiate protocol-accessible nodes.</t>
+            other modules to instantiate protocol-accessible nodes.  Thus this module, when
+            implemented, does not itself define any protocol-accessible nodes.</t>
         </section>
       </section>
 
@@ -477,6 +488,13 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           these considerations are primarily for the designers of other
           modules that use these groupings.</t>
 
+        <t>Please be aware that this YANG module uses groupings from
+          other YANG modules that define nodes that may be considered
+          sensitive or vulnerable in network environments.  Please
+          review the Security Considerations for dependent YANG modules
+          for information as to which nodes may be considered sensitive
+          or vulnerable in network environments.</t>
+
         <t>None of the readable data nodes defined in this YANG module are
           considered sensitive or vulnerable in network environments.
           The NACM "default-deny-all" extension has not been set for
@@ -507,6 +525,13 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
         <t>Since the module in this document only define groupings,
           these considerations are primarily for the designers of other
           modules that use these groupings.</t>
+
+        <t>Please be aware that this YANG module uses groupings from
+          other YANG modules that define nodes that may be considered
+          sensitive or vulnerable in network environments.  Please
+          review the Security Considerations for dependent YANG modules
+          for information as to which nodes may be considered sensitive
+          or vulnerable in network environments.</t>
 
         <t>One readable data node defined in this YANG module may be considered
           sensitive or vulnerable in some network environments. This
@@ -554,6 +579,13 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
         <t>Since the module in this document only define groupings,
           these considerations are primarily for the designers of other
           modules that use these groupings.</t>
+
+        <t>Please be aware that this YANG module uses groupings from
+          other YANG modules that define nodes that may be considered
+          sensitive or vulnerable in network environments.  Please
+          review the Security Considerations for dependent YANG modules
+          for information as to which nodes may be considered sensitive
+          or vulnerable in network environments.</t>
 
         <t>None of the readable data nodes defined in this YANG module are
           considered sensitive or vulnerable in network environments.
@@ -790,6 +822,18 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
             <t>Updated per Tom Petch review.</t>
             <t>Added refs to RFC9293 and SOCKS 4A.</t>
             <t>Fixed examples to use IETF-sanctioned values for examples.</t>
+          </list>
+        </t>
+      </section>
+      <section title="16 to 17">
+        <t>
+          <list style="symbols">
+              <t>Addresses AD review comments.</t>
+              <t>Added note to Editor to fix line foldings.</t>
+              <t>Added Security Considerations text to also look a SC-section from imported modules.</t>
+              <t>Fixed bug: s/augment "keepalives"/refine "keepalives"/</t>
+              <t>Set defaults for idle-time, max-probes, and probe-interval (removed "mandatory true").</t>
+              <t>Updated examples to use IETF recommended values for examples.</t>
           </list>
         </t>
       </section>

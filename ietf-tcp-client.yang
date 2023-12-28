@@ -315,7 +315,7 @@ module ietf-tcp-client {
     }
 
     uses tcpcmn:tcp-common-grouping {
-      augment "keepalives" {
+      refine "keepalives" {
         if-feature "tcp-client-keepalives";
         description
           "Add an if-feature statement so that implementations

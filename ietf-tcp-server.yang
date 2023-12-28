@@ -105,7 +105,7 @@ module ietf-tcp-server {
          an application specific default port number value.";
     }
     uses tcpcmn:tcp-common-grouping {
-      augment "keepalives" {
+      refine "keepalives" {
         if-feature "tcp-server-keepalives";
         description
           "Add an if-feature statement so that implementations

@@ -3,9 +3,9 @@
 
 <tcp-client xmlns="urn:ietf:params:xml:ns:yang:ietf-tcp-client">
   <remote-address>www.example.com</remote-address>
-  <remote-port>443</remote-port>
-  <local-address>0.0.0.0</local-address>
-  <local-port>0</local-port>
+  <remote-port>8443</remote-port>
+  <local-address>192.0.2.2</local-address>
+  <local-port>12345</local-port>
   <proxy-server>
     <socks5-parameters>
       <remote-address>proxy.example.com</remote-address>
@@ -19,8 +19,8 @@
     </socks5-parameters>
   </proxy-server>
   <keepalives>
-    <idle-time>15</idle-time>
-    <max-probes>3</max-probes>
-    <probe-interval>30</probe-interval>
+    <idle-time>7200</idle-time>
+    <max-probes>9</max-probes>
+    <probe-interval>75</probe-interval>
   </keepalives>
 </tcp-client>
