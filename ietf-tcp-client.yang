@@ -318,7 +318,7 @@ module ietf-tcp-client {
       refine "keepalives" {
         if-feature "tcp-client-keepalives";
         description
-          "Add an if-feature statement so that implementations
+          "An if-feature statement so that implementations
            can choose to support TCP client keepalives.";
       }
     }

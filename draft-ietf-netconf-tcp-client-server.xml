@@ -76,10 +76,10 @@
           the Appendix.  Please replace the self-reference in this section with "This RFC"
           (or similar) and remove the self-reference in the "Normative/Informative References"
           section, whichever it is in.</t>
-        <t>Tree-diagrams in this draft may use the '/' line-folding mode defined in RFC 8792.
-          However, nicer-to-the-eye is when the '//' line-folding mode is used.  The AD suggested
-          suggested putting a request here for the RFC Editor to help convert "ugly" '/' folded
-          examples to use the '//' folding mode.  "Help convert" may be interpreted as, identify
+        <t>Tree-diagrams in this draft may use the '&#92;' line-folding mode defined in RFC 8792.
+          However, nicer-to-the-eye is when the '&#92;&#92;' line-folding mode is used.  The AD suggested
+          suggested putting a request here for the RFC Editor to help convert "ugly" '&#92;' folded
+          examples to use the '&#92;&#92;' folding mode.  "Help convert" may be interpreted as, identify
           what looks ugly and ask the authors to make the adjustment.</t>
       <t>The following Appendix section is to be removed prior to publication:
         <list style="symbols">
@@ -837,6 +837,13 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           </list>
         </t>
       </section>
+      <section title="29 to 30">
+         <t>
+           <list style="symbols">
+             <t>Addresses AD review by Rob Wilton.</t>
+           </list>
+         </t>
+       </section>
     </section>
 
     <section title="Acknowledgements" numbered="no">
@@ -846,6 +853,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
         Ladislav Lhotka,
         Nick Hancock,
         Per Andersson,
+        Rob Wilton,
         and Tom Petch.
       </t>
     </section>

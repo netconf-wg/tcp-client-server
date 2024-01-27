@@ -66,6 +66,10 @@ module ietf-tcp-common {
        whole.";
     container keepalives {
       if-feature "keepalives-supported";
+      presence
+        "Indicates that keepalives are enabled, aligning to
+         the requirement in Section 4.2.3.6 RFC 1122 that
+         keepalives are off by default.";
       description
         "Configures the keep-alive policy, to proactively test the
          aliveness of the TCP peer.  An unresponsive TCP peer is
@@ -73,8 +77,10 @@ module ietf-tcp-common {
          probe-interval) seconds.  Further guidance can be found
          in Section 2.1.5 of RFC DDDD.";
       reference
-        "RFC 9293:
-          Transmission Control Protocol (TCP), Section 3.8.4..";
+        "RFC 1122:
+           Requirements for Internet Hosts -- Communication Layers
+         RFC 9293:
+           Transmission Control Protocol (TCP), Section 3.8.4.";
       leaf idle-time {
         type uint16 {
           range "1..max";
