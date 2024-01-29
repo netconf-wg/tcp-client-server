@@ -189,7 +189,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-common-grouping.no-expand.txt)
         <section title="Guidelines for Configuring TCP Keep-Alives" toc="exclude">
           <t>Network stacks may include "keep-alives" in their TCP implementations,
             although this practice is not universally accepted. If keep-alives are
-            included, <xref target="RFC1122"/> mandates that the application MUST be
+            included, <xref target="RFC9293"/> mandates that the application MUST be
             able to turn them on or off for each TCP connection, and that they MUST
             default to off.</t>
           <t>Keep-alive mechanisms exist in many protocols. Depending on the protocol
@@ -200,7 +200,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-common-grouping.no-expand.txt)
             to the application.</t>
           <t>A TCP keep-alive mechanism SHOULD only be invoked in server applications
             that might otherwise hang indefinitely and consume resources unnecessarily
-            if a client crashes or aborts a connection during a network failure <xref target="RFC1122"/>.
+            if a client crashes or aborts a connection during a network failure <xref target="RFC9293"/>.
             TCP keep-alives may consume significant resources both in the network and
             in endpoints (e.g., battery power).  In addition, frequent keep-alives
             risk network congestion. The higher the frequency of keep-alives, the
@@ -209,7 +209,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-common-grouping.no-expand.txt)
             Given the cost of keep-alives, parameters have to be configured carefully:
             <list style="symbols">
               <t>The default idle interval (leaf "idle-time") MUST default to no less
-                than two hours, i.e., 7200 seconds <xref target="RFC1122"/>. A lower value MAY be
+                than two hours, i.e., 7200 seconds <xref target="RFC9293"/>. A lower value MAY be
                 configured, but keep-alive messages SHOULD NOT be transmitted more
                 frequently than once every 15 seconds. Longer intervals SHOULD be
                 used when possible.</t>
@@ -218,7 +218,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-common-grouping.no-expand.txt)
                 packet loss. ACK segments that contain no data are not reliably
                 transmitted by TCP. Consequently, if a keep-alive mechanism is
                 implemented it MUST NOT interpret failure to respond to any
-                specific probe as a dead connection <xref target="RFC1122"/>. 
+                specific probe as a dead connection <xref target="RFC9293"/>. 
                 Typically, a single-digit number should suffice.</t>
               <t>TCP implementations may include a parameter for the number of
                 seconds between TCP keep-alive probes (leaf "probe-interval"). In
@@ -664,7 +664,6 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
     </references>
 
     <references title="Informative References">
-      <?rfc include="reference.RFC.1122.xml"?>
       <?rfc include="reference.RFC.1928.xml"?>
       <?rfc include="reference.RFC.1929.xml"?>
       <?rfc include="reference.RFC.2743.xml"?>
