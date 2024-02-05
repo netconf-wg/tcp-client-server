@@ -471,7 +471,9 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
 
     <section title="Security Considerations">
 
-      <section title='The "ietf-tcp-common" YANG Module'>
+      <section title='Template for the "ietf-tcp-common" YANG Module'>
+        <t>This section follows the template defined in <xref section="3.7.1" target="RFC8407"/>.</t>
+
         <t>The "ietf-tcp-common" YANG module defines "grouping" statements
           that are designed to be accessed via YANG based management
           protocols, such as NETCONF <xref target="RFC6241"/> and RESTCONF
@@ -509,7 +511,9 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           and thus the security consideration for such is not provided here.</t>
       </section>
 
-      <section title='The "ietf-tcp-client" YANG Module'>
+      <section title='Template for the "ietf-tcp-client" YANG Module'>
+        <t>This section follows the template defined in <xref section="3.7.1" target="RFC8407"/>.</t>
+
         <t>The "ietf-tcp-client" YANG module defines "grouping" statements
           that are designed to be accessed via YANG based management
           protocols, such as NETCONF <xref target="RFC6241"/> and RESTCONF
@@ -563,7 +567,9 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           implement this feature for unsecure protocols, as per <xref target="RFC6056"/>.</t>
       </section>
 
-      <section title='The "ietf-tcp-server" YANG Module'>
+      <section title='Template for the "ietf-tcp-server" YANG Module'>
+        <t>This section follows the template defined in <xref section="3.7.1" target="RFC8407"/>.</t>
+
         <t>The "ietf-tcp-server" YANG module defines "grouping" statements
           that are designed to be accessed via YANG based management
           protocols, such as NETCONF <xref target="RFC6241"/> and RESTCONF
@@ -673,6 +679,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
       <?rfc include="reference.RFC.8040.xml"?>
       <?rfc include="reference.RFC.8340.xml"?>
       <?rfc include="reference.RFC.8342.xml"?>
+        <?rfc include="reference.RFC.8407.xml"?>
       <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-trust-anchors.xml"/>
       <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-keystore.xml"/>
       <xi:include href="https://datatracker.ietf.org/doc/bibxml3/reference.I-D.ietf-netconf-tcp-client-server.xml"/>
@@ -836,19 +843,33 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           </list>
         </t>
       </section>
-      <section title="29 to 30">
+      <section title="18 to 19">
          <t>
            <list style="symbols">
              <t>Addresses AD review by Rob Wilton.</t>
            </list>
          </t>
        </section>
+      <section title="18 to 19">
+         <t>
+           <list style="symbols">
+             <t>Replace RFC 1122 with RFC 9293.</t>
+           </list>
+         </t>
+       </section>
+        <section title="19 to 20">
+          <t>  
+            <list style="symbols">
+              <t>Addresses 1st-round of IESG reviews.</t>
+            </list>
+          </t> 
+        </section>
     </section>
 
     <section title="Acknowledgements" numbered="no">
       <t>The authors would like to thank for following for lively discussions
         on list and in the halls (ordered by first name):
-        Juergen Schoenwaelder,
+        Jürgen Schönwälder,
         Ladislav Lhotka,
         Nick Hancock,
         Per Andersson,
