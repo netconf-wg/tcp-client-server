@@ -41,7 +41,7 @@
     <area>Operations</area>
     <workgroup>NETCONF Working Group</workgroup>
     <abstract>
-      <t>This document defines three YANG 1.1 modules
+      <t>This document presents three YANG 1.1 modules
         to support the configuration of TCP clients and TCP servers. The modules
         include basic parameters of a TCP connection relevant for client or server
         applications, as well as client configuration required for traversing proxies.
@@ -127,7 +127,7 @@ INSERT_TEXT_FROM_FILE(../common-intro-snippet.xml,150)
           in terms of its features and groupings.</t>
 
         <section title="Model Scope" toc="exclude">
-          <t>This document defines a common "grouping" statement for basic TCP connection
+          <t>This document presents a common "grouping" statement for basic TCP connection
             parameters that matter to applications. It is "common" in that this grouping
             is used by both the "ietf-tcp-client" and "ietf-tcp-server" modules.  In some
             TCP stacks, such parameters can also directly be set by an application using
@@ -208,11 +208,10 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-common-grouping.no-expand.txt)
           <t>
             Given the cost of keep-alives, parameters have to be configured carefully:
             <list style="symbols">
-              <t>The default idle interval (leaf "idle-time") MUST default to no less
-                than two hours, i.e., 7200 seconds <xref target="RFC9293"/>. A lower value MAY be
-                configured, but keep-alive messages SHOULD NOT be transmitted more
-                frequently than once every 15 seconds. Longer intervals SHOULD be
-                used when possible.</t>
+              <t>The default idle interval (leaf "idle-time") is two hours, i.e.,
+                7200 seconds <xref target="RFC9293"/>.  A lower value MAY be
+                configured, but idle intervals SHOULD NOT be smaller than 15
+                seconds. Longer idle intervals SHOULD be used when possible.</t>
               <t>The maximum number of sequential keep-alive probes that can fail
                 (leaf "max-probes") trades off responsiveness and robustness against
                 packet loss. ACK segments that contain no data are not reliably
@@ -272,7 +271,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-common@YYYY-MM-DD.yang)
         <t>This section provides an overview of the "ietf-tcp-client" module
           in terms of its features and groupings.</t>
 
-        <section title="Features" toc="exclude">
+        <section title="Features" anchor="features" toc="exclude">
           <t>The following diagram lists all the "feature" statements
             defined in the "ietf-tcp-client" module:</t>
           <t>
@@ -282,10 +281,42 @@ Features:
   +-- local-binding-supported
   +-- tcp-client-keepalives
   +-- proxy-connect
-  +-- socks5-gss-api
-  +-- socks5-username-password
+      +-- socks4-supported {proxy-connect}?
+      +-- socks4a-supported {proxy-connect}?
+      +-- socks5-supported {proxy-connect}?
+          +-- socks5-gss-api {socks5-supported}?
+          +-- socks5-username-password {socks5-supported}?
 ]]></artwork>
             </figure>
+            <t>Comments:</t>
+            <ul>
+              <li>The "local-binding-supported" feature indicates that
+                the server supports configuring local bindings (i.e.,
+                the local address and local port) for TCP clients."</li>
+              <li>The "tcp-client-keepalives" feature indicates that
+                per socket TCP keepalive parameters are configurable for
+                TCP clients on the server implementing this feature.</li>
+              <li>The "proxy-connect" feature indicates the TCP-client
+                supports connecting through TCP proxies.</li>
+              <li>The "socks4-supported" feature indicates the
+                TCP-client supports Socks4-based proxies.</li>
+              <li>The "socks4a-supported" feature indicates the
+                TCP-client supports Socks4a-based proxies.  The difference
+                between Socks4 and Socks4a is that Socks4a enables the
+                "remote-address" to be specified using a hostname, in
+                addition to an IP address.</li>
+              <li>The "socks5-supported" feature indicates the
+                TCP-client supports Socks5-based proxies.</li>
+              <li>The "socks5-gss-api" feature indicates that
+                the server, when acting as a TCP-client, supports
+                authenticating to a SOCKS Version 5 proxy server
+                using GSSAPI credentials.</li>
+              <li>The "socks5-username-password" feature indicates
+                that the server, when acting as a TCP-client,
+                supports authenticating to a SOCKS Version 5
+                proxy server using 'username' and 'password'
+                credentials."</li>
+            </ul>
           </t>
           <!--<aside>-->
             <t>The diagram above uses syntax that is similar to but not
@@ -313,7 +344,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-client-grouping.no-expand.txt)
             <t>Comments:</t>
             <ul>
               <li>The "remote-address" node, which is mandatory, may be configured as
-                an IPv4 address, an IPv6 address, a hostname.</li>
+                an IPv4 address, an IPv6 address, or a hostname.</li>
               <li>The "remote-port" node is not mandatory, but its default value is 
                 the invalid value '0', thus forcing the consuming data model to
                 refine it in order to provide it an appropriate default value.</li>
@@ -327,7 +358,13 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-client-grouping.no-expand.txt)
               <li>The "proxy-server" node is enabled by a "feature" statement and, for
                 servers that enable it, is a "presence" container so that the descendant
                 "mandatory true" choice node does not imply that the proxy-server node
-                must be configured.</li>
+                must be configured.  The proxy-server node uses a "choice" statement
+                to allow one of several types of proxies to be configured.  The choices
+                presented in this document include Socks4, Socks4a, and Socks5, each
+                enabled by a YANG feature (see <xref target="features"/>).  Other proxy
+                types may be added by future work.</li>
+              <li>This grouping uses the "password-grouping" grouping discussed in
+                <xref target="I-D.ietf-netconf-crypto-types"/>.</li>
               <li>This grouping uses the "tcp-common-grouping" grouping discussed in
                 <xref target="tcp-common-grouping"/>.</li>
             </ul>
@@ -471,7 +508,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
 
     <section title="Security Considerations">
 
-      <section title='Template for the "ietf-tcp-common" YANG Module'>
+      <section title='Considerations for the "ietf-tcp-common" YANG Module'>
         <t>This section follows the template defined in <xref section="3.7.1" target="RFC8407"/>.</t>
 
         <t>The "ietf-tcp-common" YANG module defines "grouping" statements
@@ -511,7 +548,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           and thus the security consideration for such is not provided here.</t>
       </section>
 
-      <section title='Template for the "ietf-tcp-client" YANG Module'>
+      <section title='Considerations for the "ietf-tcp-client" YANG Module'>
         <t>This section follows the template defined in <xref section="3.7.1" target="RFC8407"/>.</t>
 
         <t>The "ietf-tcp-client" YANG module defines "grouping" statements
@@ -543,11 +580,16 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           <list style="symbols">
             <t>The "proxy-server/socks5-parameters/authentication-parameters/username-password/password" node:
               <ul empty="true">
-                <li>The cleartext "password" node defined in the "tcp-client-grouping"
-                  grouping is additionally sensitive to read operations such that,
-                  in normal use cases, it should never be returned to a client.
-                  For this reason, the NACM extension "default-deny-all" has been
-                  applied to it.</li>
+                <li>The "password" node defined in the "tcp-client-grouping"
+                  grouping is defined using the "password-grouping" grouping
+                  presented in <xref target="I-D.ietf-netconf-crypto-types"/>.
+                  This grouping enables both cleartext and encrypted passwords
+                  to be configured.  As the referenced document states, configuration
+                  of cleartext passwords is NOT RECOMMENDED.  However, in the
+                  case cleartext values are configured, this node is additionally
+                  sensitive to read operations such that, in normal use cases,
+                  it should never be returned to a client.  For this reason, the
+                  NACM extension "default-deny-all" has been applied to it.</li>
               </ul>
             </t>
           </list>
@@ -567,7 +609,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           implement this feature for unsecure protocols, as per <xref target="RFC6056"/>.</t>
       </section>
 
-      <section title='Template for the "ietf-tcp-server" YANG Module'>
+      <section title='Considerations for the "ietf-tcp-server" YANG Module'>
         <t>This section follows the template defined in <xref section="3.7.1" target="RFC8407"/>.</t>
 
         <t>The "ietf-tcp-server" YANG module defines "grouping" statements
@@ -696,7 +738,7 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
       </reference>
     </references>
 
-    <section title="Change Log" removeInRFC="true" anchor="change-log">
+    <section title="Change Log" anchor="change-log">
       <section title="00 to 01">
         <t>
           <list style="symbols">
@@ -851,26 +893,43 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
          </t>
        </section>
       <section title="18 to 19">
-         <t>
-           <list style="symbols">
-             <t>Replace RFC 1122 with RFC 9293.</t>
-           </list>
-         </t>
-       </section>
-        <section title="19 to 20">
-          <t>  
-            <list style="symbols">
-              <t>Addresses 1st-round of IESG reviews.</t>
-            </list>
-          </t> 
-        </section>
+        <t>
+          <list style="symbols">
+            <t>Replace RFC 1122 with RFC 9293.</t>
+          </list>
+        </t>
+      </section>
+      <section title="19 to 20">
+        <t>  
+          <list style="symbols">
+            <t>Addresses 1st-round of IESG reviews.</t>
+          </list>
+        </t> 
+      </section>
+      <section title="20 to 22">
+        <t>  
+          <list style="symbols">
+            <t>Addresses issues found in OpsDir review of the ssh-client-server draft.</t>
+            <t>Updated to address Mallory Knodel's Gen-ART review.</t>
+            <t>Renamed Security Considerations section s/Template for/Considerations for/</t>
+            <t>s/defines/presents/ in a few places.</t>
+            <t>Add refs to where the 'operational' and 'system' datastores are defined.</t>
+            <t>Added more 'feature' statements and descriptions for them</t>
+            <t>Added Security Considaration for the "password" node</t>
+          </list>
+        </t> 
+      </section>
     </section>
 
     <section title="Acknowledgements" numbered="no">
-      <t>The authors would like to thank for following for lively discussions
+      <t>The authors would like to thank the following for lively discussions
         on list and in the halls (ordered by first name):
+        Éric Vyncke,
         Jürgen Schönwälder,
         Ladislav Lhotka,
+        Mallory Knodel,
+        Michael Tüxen,
+        Nancy Cam-Winget,
         Nick Hancock,
         Per Andersson,
         Rob Wilton,
