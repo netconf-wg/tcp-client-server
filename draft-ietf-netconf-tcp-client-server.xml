@@ -103,6 +103,10 @@
         traversing proxies is included as well. In each case, the modules have a very narrow
         scope and focus on a minimum set of required parameters.</t>
 
+      <t>Please be advised that while this document presents support for some TCP
+        proxy techniques, there are other TCP proxy techniques that are not part
+        of this document, but could be added by augmenting the YANG module.</t>
+
 INSERT_TEXT_FROM_FILE(../common-intro-snippet.xml,150)
 
       <section title="Adherence to the NMDA">
@@ -188,7 +192,7 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-common-grouping.no-expand.txt)
 
         <section title="Guidelines for Configuring TCP Keep-Alives" toc="exclude">
           <t>Network stacks may include "keep-alives" in their TCP implementations,
-            although this practice is not universally accepted. If keep-alives are
+            although this practice is not universally implemented. If keep-alives are
             included, <xref target="RFC9293"/> mandates that the application MUST be
             able to turn them on or off for each TCP connection, and that they MUST
             default to off.</t>
@@ -508,6 +512,12 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
 
     <section title="Security Considerations">
 
+      <t>The three YANG modules in this document define groupings and will
+        not be deployed as standalone modules. Their security implications
+        may be context dependent based on their use in other modules.  The
+        designers of modules which import these grouping must conduct their
+        own analysis of the security considerations.</t>
+
       <section title='Considerations for the "ietf-tcp-common" YANG Module'>
         <t>This section follows the template defined in <xref section="3.7.1" target="RFC8407"/>.</t>
 
@@ -522,10 +532,6 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           provides the means to restrict access for particular users to a
           pre-configured subset of all available protocol operations and
           content.</t>
-
-        <t>Since the module in this document only define groupings,
-          these considerations are primarily for the designers of other
-          modules that use these groupings.</t>
 
         <t>Please be aware that this YANG module uses groupings from
           other YANG modules that define nodes that may be considered
@@ -562,10 +568,6 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           provides the means to restrict access for particular users to a
           pre-configured subset of all available protocol operations and
           content.</t>
-
-        <t>Since the module in this document only define groupings,
-          these considerations are primarily for the designers of other
-          modules that use these groupings.</t>
 
         <t>Please be aware that this YANG module uses groupings from
           other YANG modules that define nodes that may be considered
@@ -623,10 +625,6 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           provides the means to restrict access for particular users to a
           pre-configured subset of all available protocol operations and
           content.</t>
-
-        <t>Since the module in this document only define groupings,
-          these considerations are primarily for the designers of other
-          modules that use these groupings.</t>
 
         <t>Please be aware that this YANG module uses groupings from
           other YANG modules that define nodes that may be considered
@@ -919,6 +917,13 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           </list>
         </t> 
       </section>
+      <section title="22 to 23">
+        <t>  
+          <list style="symbols">
+            <t>Address IESG review comments.</t>
+          </list>
+        </t> 
+      </section>
     </section>
 
     <section title="Acknowledgements" numbered="no">
@@ -928,11 +933,13 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
         Jürgen Schönwälder,
         Ladislav Lhotka,
         Mallory Knodel,
+        Martin Duke,
         Michael Tüxen,
         Nancy Cam-Winget,
         Nick Hancock,
         Per Andersson,
         Rob Wilton,
+        Roman Danyliw,
         and Tom Petch.
       </t>
     </section>
