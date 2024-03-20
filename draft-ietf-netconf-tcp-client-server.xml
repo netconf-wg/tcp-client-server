@@ -924,6 +924,13 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           </list>
         </t> 
       </section>
+      <section title="23 to 24">
+        <t>  
+          <list style="symbols">
+            <t>Nothing changed.  Bumped only for automation.</t>
+          </list>
+        </t> 
+      </section>
     </section>
 
     <section title="Acknowledgements" numbered="no">
