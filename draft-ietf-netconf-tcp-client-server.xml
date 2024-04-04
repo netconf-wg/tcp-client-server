@@ -931,6 +931,20 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
           </list>
         </t> 
       </section>
+      <section title="24 to 25">
+        <t>  
+          <list style="symbols">
+            <t>Updated to support dual-stacks</t>
+          </list>
+        </t> 
+      </section>
+      <section title="25 to 26">
+        <t>  
+          <list style="symbols">
+            <t>Updated to ensure at least one local-bind is specified.</t>
+          </list>
+        </t> 
+      </section>
     </section>
 
     <section title="Acknowledgements" numbered="no">
