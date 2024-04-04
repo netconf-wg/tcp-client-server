@@ -2,8 +2,10 @@
 <!--  It simulates if the "grouping" were a "container" instead.  -->
 
 <tcp-server xmlns="urn:ietf:params:xml:ns:yang:ietf-tcp-server">
-  <local-address>192.0.2.2</local-address>
-  <local-port>49152</local-port>
+  <local-bind>
+    <local-address>192.0.2.2</local-address>
+    <local-port>49152</local-port>
+  </local-bind>
   <keepalives>
     <idle-time>7200</idle-time>
     <max-probes>9</max-probes>

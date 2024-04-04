@@ -937,17 +937,20 @@ INSERT_TEXT_FROM_FILE(ietf-tcp-server@YYYY-MM-DD.yang)
       <t>The authors would like to thank the following for lively discussions
         on list and in the halls (ordered by first name):
         Éric Vyncke,
+        Joe Clarke,
         Jürgen Schönwälder,
         Ladislav Lhotka,
         Mallory Knodel,
         Martin Duke,
         Michael Tüxen,
+        Mohamed Boucadair,
         Nancy Cam-Winget,
         Nick Hancock,
         Per Andersson,
         Rob Wilton,
         Roman Danyliw,
-        and Tom Petch.
+        Tom Petch,
+        Wim Henderickx.
       </t>
     </section>
 
