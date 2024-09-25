@@ -349,9 +349,11 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-client-grouping.no-expand.txt)
             <ul>
               <li>The "remote-address" node, which is mandatory, may be configured as
                 an IPv4 address, an IPv6 address, or a hostname.</li>
-              <li>The "remote-port" node is not mandatory, but its default value is 
-                the invalid value '0', thus forcing the consuming data model to
-                refine it in order to provide it an appropriate default value.</li>
+              <li>The "remote-port" leaf is defined with neither a "default" nor
+                a "mandatory" statement.  YANG models using this grouping SHOULD
+                refine the grouping with a "default" statement, usually with the
+                port allocated by IANA, or a "mandatory" statement, if the ports
+                needs to be always present.</li>
               <li>The "local-address" node, which is enabled by the "local-binding-supported"
                 feature (<xref target="common-features"/>), may be configured as
                 an IPv4 address, an IPv6 address, or a wildcard value.</li>
@@ -468,9 +470,11 @@ INSERT_TEXT_FROM_FILE(refs/tree-tcp-server-grouping.no-expand.txt)
             <ul>
               <li>The "local-address" node, which is mandatory, may be configured as
                 an IPv4 address, an IPv6 address, or a wildcard value.</li>
-              <li>The "local-port" node is not mandatory, but its default value is 
-                the invalid value '0', thus forcing the consuming data model to
-                refine it in order to provide it an appropriate default value.</li>
+              <li>The "local-port" leaf is defined with neither a "default" nor a
+                "mandatory"	statement.  YANG models using this grouping SHOULD
+                refine the grouping with a "default" statement, usually with
+                the port allocated by IANA, or a "mandatory" statement,	if the
+                port needs to be always present.</li>
               <li>This grouping uses the "tcp-common-grouping" grouping discussed in
                 <xref target="tcp-common-grouping"/>.</li>
             </ul>

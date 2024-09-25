@@ -167,12 +167,8 @@ module ietf-tcp-client {
     }
     leaf remote-port {
       type inet:port-number;
-      default "0";
       description
-        "The IP port number for the remote peer to establish a
-         connection with.  An invalid default value is used
-         so that importing modules may 'refine' it with the
-         appropriate default port number value.";
+        "The port number of the remote TCP server.";
     }
     leaf local-address {
       if-feature "local-binding-supported";
